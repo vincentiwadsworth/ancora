@@ -1,0 +1,67 @@
+---
+import { site } from '../config/site';
+import { getPageMeta, type PageKey } from '../config/meta';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@/styles/global.css';
+
+interface Props {
+  page: PageKey;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { page, jsonLd } = Astro.props;
+const meta = getPageMeta(page);
+---
+
+<!DOCTYPE html>
+<html lang="es-BO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f1e36" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+
+    <meta property="og:title" content={meta.ogTitle} />
+    <meta property="og:description" content={meta.ogDescription} />
+    <meta property="og:image" content={meta.ogImage} />
+    <meta property="og:url" content={meta.canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_BO" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    {site.umamiEnabled && site.umamiSiteId && (
+      <script
+        async
+        defer
+        data-website-id={site.umamiSiteId}
+        src="https://cloud.umami.is/script.js"
+      />
+    )}
+  </head>
+  <body class="bg-surface text-primary-600 antialiased">
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+    <Header />
+    <main id="main" tabindex="-1" class="min-h-[60vh]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

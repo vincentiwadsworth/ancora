@@ -1,0 +1,46 @@
+---
+interface Props {
+  variant?: 'mark' | 'wordmark';
+  class?: string;
+  ariaLabel?: string;
+}
+
+const { variant = 'wordmark', class: className, ariaLabel = 'ANCORA' } = Astro.props;
+---
+
+{variant === 'mark' ? (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 64 64"
+    role="img"
+    aria-label={ariaLabel}
+    class={className}
+    fill="none"
+  >
+    <rect width="64" height="64" rx="8" fill="currentColor" />
+    <path d="M16 16 L48 48 M48 16 L16 48" stroke="#fafaf7" stroke-width="4" stroke-linecap="round" />
+  </svg>
+) : (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 220 48"
+    role="img"
+    aria-label={ariaLabel}
+    class={className}
+    fill="none"
+  >
+    <rect x="0" y="0" width="48" height="48" rx="6" fill="currentColor" />
+    <path d="M12 12 L36 36 M36 12 L12 36" stroke="#fafaf7" stroke-width="3" stroke-linecap="round" />
+    <text
+      x="60"
+      y="32"
+      font-family="system-ui, -apple-system, sans-serif"
+      font-size="24"
+      font-weight="700"
+      letter-spacing="0.08em"
+      fill="currentColor"
+    >
+      ANCORA
+    </text>
+  </svg>
+)}

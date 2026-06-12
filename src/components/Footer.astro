@@ -1,0 +1,89 @@
+---
+import { site } from '../config/site';
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+
+const navItems = [
+  { href: '/services', label: 'Servicios' },
+  { href: '/about', label: 'Sobre nosotros' },
+  { href: '/contact', label: 'Contacto' },
+];
+
+const socialItems = [
+  { href: site.socialHandles.instagram, label: 'Instagram', icon: 'photo_camera' },
+  { href: site.socialHandles.facebook, label: 'Facebook', icon: 'thumb_up' },
+  { href: site.socialHandles.linkedin, label: 'LinkedIn', icon: 'work' },
+];
+---
+
+<footer class="bg-primary-600 text-neutral-100">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div>
+        <Logo variant="wordmark" class="h-8 w-auto text-white" />
+        <p class="mt-4 text-2xl font-semibold leading-snug text-white">
+          {site.tagline}
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-200">
+          Contacto
+        </h3>
+        <ul class="mt-4 space-y-2 text-sm text-neutral-100">
+          <li>
+            <a href={`tel:${site.phone.replace(/\s+/g, '')}`} class="hover:underline">
+              {site.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`} class="hover:underline">
+              {site.email}
+            </a>
+          </li>
+          <li>{site.address}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-200">
+          Navegación
+        </h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.href} class="text-neutral-100 hover:underline">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <h3 class="mt-8 text-sm font-semibold uppercase tracking-wider text-neutral-200">
+          Redes
+        </h3>
+        <ul class="mt-4 flex gap-3">
+          {socialItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-400 text-neutral-100 transition-colors hover:bg-white hover:text-primary-600"
+              >
+                <span class="material-symbols-outlined" aria-hidden="true">
+                  {item.icon}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-primary-500 pt-6 text-sm text-neutral-200">
+      © {year} {site.brandName}. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

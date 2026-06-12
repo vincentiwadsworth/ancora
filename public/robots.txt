@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ancora.com.bo/sitemap.xml

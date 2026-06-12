@@ -1,0 +1,44 @@
+---
+import { whatsappLink, type CtaIntent } from '../config/site';
+
+interface Props {
+  intent: CtaIntent;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  label?: string;
+  class?: string;
+}
+
+const {
+  intent,
+  variant = 'primary',
+  label,
+  class: className,
+} = Astro.props;
+
+const defaultLabels: Record<CtaIntent, string> = {
+  evaluate: 'Evaluar mi propiedad',
+  general: 'Más información',
+  process: 'Conocer el proceso',
+};
+
+const finalLabel = label ?? defaultLabels[intent];
+
+const variantClasses: Record<NonNullable<Props['variant']>, string> = {
+  primary: 'bg-primary-600 text-white hover:bg-primary-700',
+  secondary: 'bg-surface text-primary-600 border border-primary-600 hover:bg-primary-50',
+  ghost: 'bg-transparent text-primary-600 hover:bg-primary-50',
+};
+
+const baseClasses =
+  'inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600';
+---
+
+<a
+  href={whatsappLink(intent)}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[baseClasses, variantClasses[variant], className]}
+  aria-label={finalLabel}
+>
+  {finalLabel}
+</a>

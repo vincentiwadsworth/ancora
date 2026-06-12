@@ -1,4 +1,206 @@
 ---
-import '@/styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import PillarCard from '../components/PillarCard.astro';
+import PainCard from '../components/PainCard.astro';
+import SegmentedCta from '../components/SegmentedCta.astro';
+import { pillars } from '../data/pillars';
+import { pains } from '../data/pains';
+import { site } from '../config/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.brandName,
+  url: 'https://ancora.com.bo',
+  logo: 'https://ancora.com.bo/favicon.svg',
+  description: site.tagline,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address,
+    addressCountry: 'BO',
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: site.phone,
+      contactType: 'customer service',
+      areaServed: 'BO',
+      availableLanguage: ['Spanish'],
+    },
+  ],
+  email: site.email,
+};
 ---
-<html lang="es-BO"><body><h1>ANCORA — coming soon</h1></body></html>
+
+<BaseLayout page="home" jsonLd={jsonLd}>
+  <Section
+    id="hero"
+    background="default"
+    containerClass="!py-[var(--spacing-section-y-sm)]"
+  >
+    <div class="max-w-3xl">
+      <h1 class="text-4xl font-bold leading-tight text-primary-600 sm:text-5xl">
+        Administramos tu propiedad. Vos descansás.
+      </h1>
+      <p class="mt-6 text-lg text-neutral-600 sm:text-xl">
+        ANCORA es una empresa especializada en la administración integral de
+        propiedades residenciales en Bolivia. Nos encargamos de todo el proceso
+        para que tu inmueble genere rentabilidad sin que tengas que ocuparte del
+        día a día.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <SegmentedCta intent="evaluate" variant="primary" />
+        <SegmentedCta intent="general" variant="secondary" />
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    id="pilares"
+    eyebrow="Nuestro compromiso"
+    heading="Tres compromisos con tu patrimonio"
+    intro="Menos vacancia, menos riesgo legal, menos tiempo invertido por vos."
+    background="muted"
+  >
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {pillars.map((pillar) => <PillarCard pillar={pillar} />)}
+    </div>
+  </Section>
+
+  <Section
+    id="dolores"
+    eyebrow="¿Te suena familiar?"
+    heading="Los cinco dolores del propietario"
+    intro="Los problemas que enfrentás cuando administrás solo."
+    background="default"
+  >
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+      {pains.map((pain) => <PainCard pain={pain} />)}
+    </div>
+    <p class="mt-10 text-base italic text-neutral-600">
+      "La administración profesional cuesta menos que una mala administración."
+    </p>
+  </Section>
+
+  <Section
+    id="diferenciacion"
+    heading="La diferencia entre alquilar y administrar"
+    intro="Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual."
+    background="muted"
+  >
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[640px] border-collapse text-left">
+        <thead>
+          <tr>
+            <th class="border-b border-neutral-200 p-4 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+              Fase
+            </th>
+            <th class="border-b border-neutral-200 p-4 text-sm font-semibold uppercase tracking-wider text-neutral-500">
+              Servicio
+            </th>
+            <th class="border-b border-neutral-200 p-4 text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
+              Inmobiliaria tradicional
+            </th>
+            <th class="border-b border-neutral-200 p-4 text-center text-sm font-semibold uppercase tracking-wider text-primary-600">
+              ANCORA
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            { fase: 'FASE 1 — Captación', rows: [
+              { servicio: 'Captación', trad: true, ancora: true },
+              { servicio: 'Evaluación', trad: true, ancora: true },
+              { servicio: 'Contrato', trad: true, ancora: true },
+            ]},
+            { fase: 'FASE 2 — Administración', rows: [
+              { servicio: 'Cobranza', trad: false, ancora: true },
+              { servicio: 'Seguimiento', trad: false, ancora: true },
+              { servicio: 'Mantenimiento', trad: false, ancora: true },
+            ]},
+            { fase: 'FASE 3 — Renovación & Cierre', rows: [
+              { servicio: 'Renovación', trad: false, ancora: true },
+              { servicio: 'Entrega', trad: false, ancora: true },
+              { servicio: 'Cierre', trad: false, ancora: true },
+            ]},
+          ].map((group) => (
+            <>
+              <tr>
+                <td colspan="4" class="border-b border-neutral-200 bg-surface-muted p-3 text-sm font-semibold uppercase tracking-wider text-primary-600">
+                  {group.fase}
+                </td>
+              </tr>
+              {group.rows.map((row) => (
+                <tr>
+                  <td class="border-b border-neutral-200 p-4"></td>
+                  <td class="border-b border-neutral-200 p-4 text-sm text-neutral-700">{row.servicio}</td>
+                  <td class="border-b border-neutral-200 p-4 text-center text-lg">
+                    {row.trad ? (
+                      <span class="text-neutral-500" aria-label="Incluido">✓</span>
+                    ) : (
+                      <span class="text-neutral-300" aria-label="No incluido">✗</span>
+                    )}
+                  </td>
+                  <td class="border-b border-neutral-200 p-4 text-center text-lg text-primary-600">
+                    <span aria-label="Incluido">✓</span>
+                  </td>
+                </tr>
+              ))}
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-8 text-base text-neutral-600">
+      Muchas inmobiliarias terminan su trabajo cuando se firma el contrato.
+      ANCORA continúa administrando durante toda la relación contractual.
+    </p>
+  </Section>
+
+  <Section
+    id="testimonios"
+    heading="Lo que dicen nuestros clientes"
+    intro="Pronto publicaremos testimonios reales de propietarios que ya trabajan con ANCORA."
+    background="default"
+  >
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {[1, 2].map(() => (
+        <figure class="rounded-lg border border-dashed border-neutral-300 bg-white p-8">
+          <span class="material-symbols-outlined text-4xl text-primary-600" aria-hidden="true">format_quote</span>
+          <blockquote class="mt-4 text-base italic text-neutral-500">
+            Testimonio de cliente — próximo a publicar.
+          </blockquote>
+          <figcaption class="mt-4 text-sm font-semibold text-neutral-700">
+            Nombre del cliente
+          </figcaption>
+          <div class="mt-2 text-sm text-neutral-400" aria-label="Calificación pendiente">
+            ★ ★ ★ ★ ★
+          </div>
+        </figure>
+      ))}
+    </div>
+  </Section>
+
+  <Section
+    id="contacto-cta"
+    background="inverse"
+  >
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold text-white sm:text-4xl">
+        ¿Listo para que tu propiedad trabaje para vos?
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-200">
+        Agendá una evaluación sin costo de tu propiedad.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <SegmentedCta
+          intent="evaluate"
+          variant="primary"
+          label="Evaluar mi propiedad"
+          class="!bg-white !text-primary-600 hover:!bg-neutral-100"
+        />
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

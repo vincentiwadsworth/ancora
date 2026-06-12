@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color scale anchored on #0f1e36 */
+  --color-primary-50:  #eef2f8;
+  --color-primary-100: #d3dceb;
+  --color-primary-200: #a6b9d6;
+  --color-primary-300: #7a96c2;
+  --color-primary-400: #4d73ad;
+  --color-primary-500: #214f99;
+  --color-primary-600: #0f1e36;   /* PRIMARY (locked) */
+  --color-primary-700: #0c1829;
+  --color-primary-800: #09111d;
+  --color-primary-900: #060b14;
+  --color-primary-950: #03060a;
+
+  /* Neutral (slate) */
+  --color-neutral-50:  #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  /* Surface */
+  --color-surface:          #fafaf7;
+  --color-surface-muted:    #f5f5f0;
+  --color-surface-inverse:  #0f1e36;
+
+  /* Typography */
+  --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter Variable', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --spacing-section-y:    6rem;
+  --spacing-section-y-sm: 3rem;
+
+  /* Radius */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-primary-600);
+    background-color: var(--color-surface);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-primary-600);
+    background-color: var(--color-surface);
+  }
+
+  /* Skip-link visibility */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--color-primary-600);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  /* Focus-visible outline for all interactive elements */
+  :focus-visible {
+    outline: 2px solid var(--color-primary-600);
+    outline-offset: 2px;
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

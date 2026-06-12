@@ -1,0 +1,36 @@
+---
+interface Props {
+  address: string;
+  zoom?: number;
+  bbox?: string;
+  markerLat?: number;
+  markerLon?: number;
+  class?: string;
+}
+
+const {
+  address,
+  zoom = 13,
+  bbox = '-63.30,-17.90,-63.10,-17.70',
+  markerLat = -17.80,
+  markerLon = -63.20,
+  class: className,
+} = Astro.props;
+
+const src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${markerLat},${markerLon}`;
+---
+
+<figure class:list={['overflow-hidden rounded-lg border border-neutral-200', className]}>
+  <iframe
+    title={`Mapa: ${address}`}
+    src={src}
+    width="100%"
+    height="320"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    class="block"
+  ></iframe>
+  <figcaption class="bg-surface-muted px-4 py-3 text-sm text-neutral-600">
+    {address}
+  </figcaption>
+</figure>

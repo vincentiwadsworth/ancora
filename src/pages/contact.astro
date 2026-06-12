@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SegmentedCta from '../components/SegmentedCta.astro';
+import ContactChannel from '../components/ContactChannel.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import { site } from '../config/site';
+import { whatsappLink } from '../config/site';
+---
+
+<BaseLayout page="contact">
+  <Section
+    id="introduccion"
+    containerClass="!py-[var(--spacing-section-y-sm)]"
+    background="default"
+  >
+    <div class="max-w-3xl">
+      <h1 class="text-4xl font-bold leading-tight text-primary-600 sm:text-5xl">
+        Contacto
+      </h1>
+      <p class="mt-6 text-lg text-neutral-600 sm:text-xl">
+        Escribinos para evaluar tu propiedad o solicitar información sobre
+        nuestros servicios. Respondemos en horario hábil en menos de 24h.
+      </p>
+      <div class="mt-8">
+        <SegmentedCta
+          intent="evaluate"
+          variant="primary"
+          label="Hablar por WhatsApp"
+          class="w-full !px-8 !py-4 !text-lg sm:w-auto"
+        />
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    id="canales"
+    heading="Otros canales"
+    intro="Si preferís otro medio, también estamos disponibles por email y teléfono."
+    background="muted"
+  >
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <ContactChannel
+        icon="mail"
+        label={site.email}
+        href={`mailto:${site.email}`}
+      />
+      <ContactChannel
+        icon="call"
+        label={site.phone}
+        href={`tel:${site.phone.replace(/\s+/g, '')}`}
+      />
+      <ContactChannel
+        icon="chat"
+        label="WhatsApp"
+        href={whatsappLink('general')}
+        external
+      />
+    </div>
+  </Section>
+
+  <Section
+    id="ubicacion"
+    heading="Ubicación"
+    intro="Trabajamos con propiedades en toda el área metropolitana de Santa Cruz de la Sierra."
+    background="default"
+  >
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <MapEmbed address={site.address} />
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-primary-600">
+            Redes
+          </h3>
+          <ul class="mt-4 flex flex-wrap gap-3">
+            <li>
+              <a
+                href={site.socialHandles.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 text-primary-600 transition-colors hover:bg-primary-50"
+                aria-label="Instagram"
+              >
+                <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.socialHandles.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 text-primary-600 transition-colors hover:bg-primary-50"
+                aria-label="Facebook"
+              >
+                <span class="material-symbols-outlined" aria-hidden="true">thumb_up</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.socialHandles.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 text-primary-600 transition-colors hover:bg-primary-50"
+                aria-label="LinkedIn"
+              >
+                <span class="material-symbols-outlined" aria-hidden="true">work</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-primary-600">
+            Horario de atención
+          </h3>
+          <p class="mt-2 text-base text-neutral-600">
+            Lunes a viernes, 9:00 a 18:00.
+          </p>
+          <p class="mt-1 text-sm italic text-neutral-500">
+            Respondemos en horario hábil en menos de 24h.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-primary-600">
+            ¿Listo para empezar?
+          </h3>
+          <p class="mt-2 text-base text-neutral-600">
+            Agendá una evaluación sin costo de tu propiedad.
+          </p>
+          <div class="mt-4">
+            <SegmentedCta intent="evaluate" variant="primary" label="Evaluar mi propiedad" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

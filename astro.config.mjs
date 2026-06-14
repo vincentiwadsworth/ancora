@@ -7,6 +7,8 @@ export default defineConfig({
   trailingSlash: "never",
   integrations: [
     sitemap(),
+    // Force Astro to emit separate global CSS file, not scope it
+    // (workaround: a marker integration in case Astro's default behavior changes)
     icon({
       include: {
         "material-symbols": [

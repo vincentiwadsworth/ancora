@@ -4,6 +4,7 @@ import Section from '../components/Section.astro';
 import PillarCard from '../components/PillarCard.astro';
 import PainCard from '../components/PainCard.astro';
 import SegmentedCta from '../components/SegmentedCta.astro';
+import { Icon } from "astro-icon/components";
 import { pillars } from '../data/pillars';
 import { pains } from '../data/pains';
 import { site } from '../config/site';
@@ -167,7 +168,7 @@ const jsonLd = {
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       {[1, 2].map(() => (
         <figure class="rounded-lg border border-dashed border-neutral-300 bg-white p-8">
-          <span class="material-symbols-outlined text-4xl text-primary-600" aria-hidden="true">format_quote</span>
+          <Icon name="material-symbols:format-quote" class="text-4xl text-primary-600" aria-hidden="true" />
           <blockquote class="mt-4 text-base italic text-neutral-500">
             Testimonio de cliente — próximo a publicar.
           </blockquote>

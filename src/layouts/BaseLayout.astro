@@ -3,7 +3,7 @@ import { site } from '../config/site';
 import { getPageMeta, type PageKey } from '../config/meta';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '@/styles/global.css';
+import '../styles/global.css';
 
 interface Props {
   page: PageKey;
@@ -32,16 +32,6 @@ const meta = getPageMeta(page);
     <meta property="og:locale" content="es_BO" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-    />
 
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

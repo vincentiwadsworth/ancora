@@ -4,6 +4,7 @@ import Section from '../components/Section.astro';
 import SegmentedCta from '../components/SegmentedCta.astro';
 import ContactChannel from '../components/ContactChannel.astro';
 import MapEmbed from '../components/MapEmbed.astro';
+import { Icon } from "astro-icon/components";
 import { site } from '../config/site';
 import { whatsappLink } from '../config/site';
 ---
@@ -82,7 +83,7 @@ import { whatsappLink } from '../config/site';
                 class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 text-primary-600 transition-colors hover:bg-primary-50"
                 aria-label="Instagram"
               >
-                <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
+                <Icon name="material-symbols:photo-camera" aria-hidden="true" />
               </a>
             </li>
             <li>
@@ -93,7 +94,7 @@ import { whatsappLink } from '../config/site';
                 class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 text-primary-600 transition-colors hover:bg-primary-50"
                 aria-label="Facebook"
               >
-                <span class="material-symbols-outlined" aria-hidden="true">thumb_up</span>
+                <Icon name="material-symbols:thumb-up" aria-hidden="true" />
               </a>
             </li>
             <li>
@@ -104,7 +105,7 @@ import { whatsappLink } from '../config/site';
                 class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 text-primary-600 transition-colors hover:bg-primary-50"
                 aria-label="LinkedIn"
               >
-                <span class="material-symbols-outlined" aria-hidden="true">work</span>
+                <Icon name="material-symbols:work" aria-hidden="true" />
               </a>
             </li>
           </ul>

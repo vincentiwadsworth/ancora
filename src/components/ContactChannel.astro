@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 interface Props {
   icon: string;
   label: string;
@@ -23,12 +25,7 @@ const rel = external ? 'noopener noreferrer' : undefined;
   ]}
   aria-label={label}
 >
-  <span
-    class="material-symbols-outlined flex-none text-2xl text-primary-600"
-    aria-hidden="true"
-  >
-    {icon}
-  </span>
+  <Icon name={`material-symbols:${icon}`} class="flex-none text-2xl text-primary-600" aria-hidden="true" />
   <span class="text-sm font-semibold text-primary-600">
     {label}
   </span>

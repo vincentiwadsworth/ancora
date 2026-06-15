@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface ComparisonPhase {
   label: string;
   services: { name: string; traditional: boolean; ancora: boolean }[];
@@ -55,27 +57,14 @@ const phases = Astro.props.phases ?? defaultPhases;
               <span class="min-w-0 flex-1 text-sm text-neutral-700">
                 {service.name}
               </span>
-              <span
-                class="inline-flex shrink-0 items-center justify-center text-sm"
-                class:list={[
-                  service.traditional
-                    ? 'text-neutral-500'
-                    : 'text-neutral-300',
-                ]}
-                aria-label={
-                  service.traditional
-                    ? 'Inmobiliaria tradicional: incluido'
-                    : 'Inmobiliaria tradicional: no incluido'
-                }
-              >
-                {service.traditional ? '✓' : '✗'}
-              </span>
-              <span
-                class="inline-flex shrink-0 items-center justify-center text-sm text-accent-500"
-                aria-label="ANCORA: incluido"
-              >
-                ✓
-              </span>
+              {
+                service.traditional ? (
+                  <Icon name="material-symbols:check-circle" class="text-neutral-500 size-5 shrink-0" aria-label="Inmobiliaria tradicional: incluido" />
+                ) : (
+                  <Icon name="material-symbols:close" class="text-neutral-300 size-5 shrink-0" aria-label="Inmobiliaria tradicional: no incluido" />
+                )
+              }
+              <Icon name="material-symbols:check-circle" class="text-accent-500 size-5 shrink-0" aria-label="ANCORA: incluido" />
             </li>
           ))}
         </ul>

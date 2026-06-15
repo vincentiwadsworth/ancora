@@ -3,7 +3,8 @@ import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 
 export default defineConfig({
-  site: "https://ancora.com.bo",
+  site: "https://vincentiwadsworth.github.io",
+  base: "/ancora",
   trailingSlash: "never",
   integrations: [
     sitemap(),

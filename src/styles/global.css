@@ -3,6 +3,9 @@
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
 
 @theme {
   /* Primary scale — anchored on #0f1e36 */
@@ -50,11 +53,12 @@
 
   /* Typography */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
 
   /* Spacing */
-  --spacing-section-y: 6rem;
+  --spacing-section-y: 5rem;
   --spacing-section-y-sm: 3rem;
+  --spacing-section-y-lg: 7rem;
 
   /* Radius */
   --radius-sm: 0.25rem;

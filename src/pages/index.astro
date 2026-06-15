@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 import ComparisonVisual from '../components/ComparisonVisual.astro';
-import HeroVisual from '../components/HeroVisual.astro';
 import PainCard from '../components/PainCard.astro';
 import PillarCard from '../components/PillarCard.astro';
 import Section from '../components/Section.astro';
@@ -40,27 +39,22 @@ const jsonLd = {
   <Section
     id="hero"
     background="default"
-    padding="compact"
+    padding="spacious"
   >
-    <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-      <div class="max-w-3xl">
-        <h1 class="font-display text-4xl font-bold leading-tight text-primary-600 sm:text-5xl">
-          Administramos tu propiedad. Vos descansás.
-        </h1>
-        <p class="mt-6 text-lg text-neutral-600 sm:text-xl">
-          ANCORA es una empresa especializada en la administración integral de
-          propiedades residenciales en Bolivia. Nos encargamos de todo el proceso
-          para que tu inmueble genere rentabilidad sin que tengas que ocuparte del
-          día a día.
-        </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <SegmentedCta intent="evaluate" variant="primary" />
-          <SegmentedCta intent="general" variant="secondary" />
-        </div>
+    <div class="mx-auto max-w-4xl text-center">
+      <h1 class="font-display text-5xl font-bold leading-tight text-primary-600 sm:text-6xl">
+        Administramos tu propiedad. Vos descansás.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 sm:text-xl">
+        Administración integral de propiedades residenciales en Bolivia. Nos encargamos de todo para que tu inmueble genere rentabilidad.
+      </p>
+      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <SegmentedCta intent="evaluate" variant="primary" />
+        <SegmentedCta intent="general" variant="secondary" />
       </div>
-      <div class="relative flex justify-center md:justify-end">
-        <HeroVisual />
-      </div>
+      <p class="mt-6 text-sm text-neutral-500">
+        Especialistas en gestión inmobiliaria en Bolivia
+      </p>
     </div>
   </Section>
 

@@ -5,7 +5,11 @@ interface Props {
   ariaLabel?: string;
 }
 
-const { variant = 'wordmark', class: className, ariaLabel = 'ANCORA' } = Astro.props;
+const {
+  variant = 'wordmark',
+  class: className,
+  ariaLabel = 'ANCORA',
+} = Astro.props;
 ---
 
 {variant === 'mark' ? (

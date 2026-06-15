@@ -17,7 +17,8 @@ export const site = {
 export const ctaMessages = {
   evaluate: 'Hola Ancora, quiero evaluar mi propiedad para administración.',
   general: 'Hola Ancora, quiero más información sobre sus servicios.',
-  process: 'Hola Ancora, quiero saber más sobre el proceso de selección de inquilinos.',
+  process:
+    'Hola Ancora, quiero saber más sobre el proceso de selección de inquilinos.',
 } as const;
 
 export type CtaIntent = keyof typeof ctaMessages;

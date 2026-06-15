@@ -1,5 +1,5 @@
 ---
-import { whatsappLink, type CtaIntent } from '../config/site';
+import { type CtaIntent, whatsappLink } from '../config/site';
 
 interface Props {
   intent: CtaIntent;
@@ -8,12 +8,7 @@ interface Props {
   class?: string;
 }
 
-const {
-  intent,
-  variant = 'primary',
-  label,
-  class: className,
-} = Astro.props;
+const { intent, variant = 'primary', label, class: className } = Astro.props;
 
 const defaultLabels: Record<CtaIntent, string> = {
   evaluate: 'Evaluar mi propiedad',
@@ -25,7 +20,8 @@ const finalLabel = label ?? defaultLabels[intent];
 
 const variantClasses: Record<NonNullable<Props['variant']>, string> = {
   primary: 'bg-primary-600 text-white hover:bg-primary-700',
-  secondary: 'bg-surface text-primary-600 border border-primary-600 hover:bg-primary-50',
+  secondary:
+    'bg-surface text-primary-600 border border-primary-600 hover:bg-primary-50',
   ghost: 'bg-transparent text-primary-600 hover:bg-primary-50',
 };
 

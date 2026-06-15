@@ -16,15 +16,18 @@ const base = `https://ancora.com.bo`;
 const meta: Record<PageKey, PageMeta> = {
   home: {
     title: `${site.brandName} — ${site.tagline}`,
-    description: 'Administración profesional de activos residenciales en alquiler. Rentabilidad, protección y tranquilidad para inversores inmobiliarios en Bolivia.',
+    description:
+      'Administración profesional de activos residenciales en alquiler. Rentabilidad, protección y tranquilidad para inversores inmobiliarios en Bolivia.',
     ogTitle: `${site.brandName} — ${site.tagline}`,
-    ogDescription: 'Administración profesional de activos residenciales en alquiler en Bolivia.',
+    ogDescription:
+      'Administración profesional de activos residenciales en alquiler en Bolivia.',
     ogImage: `${base}/og/home.png`,
     canonical: base + '/',
   },
   services: {
     title: `Servicios — ${site.brandName}`,
-    description: 'Administración integral de propiedades en alquiler: captación, contratos, cobranza, mantenimiento, inspección y reportes.',
+    description:
+      'Administración integral de propiedades en alquiler: captación, contratos, cobranza, mantenimiento, inspección y reportes.',
     ogTitle: `Servicios — ${site.brandName}`,
     ogDescription: 'Administración integral de propiedades en alquiler.',
     ogImage: `${base}/og/services.png`,
@@ -32,7 +35,8 @@ const meta: Record<PageKey, PageMeta> = {
   },
   about: {
     title: `Sobre nosotros — ${site.brandName}`,
-    description: 'Conoce al equipo de ANCORA y los valores que guían la administración de tu propiedad.',
+    description:
+      'Conoce al equipo de ANCORA y los valores que guían la administración de tu propiedad.',
     ogTitle: `Sobre nosotros — ${site.brandName}`,
     ogDescription: 'Equipo y valores de ANCORA.',
     ogImage: `${base}/og/about.png`,
@@ -40,7 +44,8 @@ const meta: Record<PageKey, PageMeta> = {
   },
   contact: {
     title: `Contacto — ${site.brandName}`,
-    description: 'Contacta a ANCORA para evaluar tu propiedad o solicitar información sobre nuestros servicios.',
+    description:
+      'Contacta a ANCORA para evaluar tu propiedad o solicitar información sobre nuestros servicios.',
     ogTitle: `Contacto — ${site.brandName}`,
     ogDescription: 'Contacta a ANCORA.',
     ogImage: `${base}/og/contact.png`,

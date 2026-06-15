@@ -1,13 +1,13 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/Section.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 import ProcessStep from '../components/ProcessStep.astro';
+import Section from '../components/Section.astro';
 import SegmentedCta from '../components/SegmentedCta.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { pricing } from '../data/pricing';
+import { protectionMeasures } from '../data/protectionMeasures';
 import { services } from '../data/services';
 import { tenantSelectionSteps } from '../data/tenantSelectionSteps';
-import { protectionMeasures } from '../data/protectionMeasures';
-import { pricing } from '../data/pricing';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout page="services">

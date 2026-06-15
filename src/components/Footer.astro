@@ -1,7 +1,7 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { site } from '../config/site';
 import Logo from './Logo.astro';
-import { Icon } from "astro-icon/components";
 
 const year = new Date().getFullYear();
 
@@ -12,7 +12,11 @@ const navItems = [
 ];
 
 const socialItems = [
-  { href: site.socialHandles.instagram, label: 'Instagram', icon: 'photo-camera' },
+  {
+    href: site.socialHandles.instagram,
+    label: 'Instagram',
+    icon: 'photo-camera',
+  },
   { href: site.socialHandles.facebook, label: 'Facebook', icon: 'thumb-up' },
   { href: site.socialHandles.linkedin, label: 'LinkedIn', icon: 'work' },
 ];

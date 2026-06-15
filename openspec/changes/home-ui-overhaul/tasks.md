@@ -67,56 +67,57 @@ Chain strategy: feature-branch-chain
 
 ## Batch 2 — P1: Typography + Rhythm + Cleanup + Contrast
 
-### 2.1 Add Plus Jakarta Sans font + display token
+- [x] 2.1 Add Plus Jakarta Sans font + display token
 - **Files**: `package.json`, `src/styles/global.css`
 - **Satisfies**: REQ-SITE-FDN-019
 - Add `"@fontsource/plus-jakarta-sans": "5.x"` to `dependencies`. Add `@import "@fontsource/plus-jakarta-sans/600.css"` and `700.css` to global.css top. Change `--font-display` from `"Inter"` to `"Plus Jakarta Sans", system-ui, sans-serif`.
 - **Acceptance**: `npm install` succeeds; `font-display` utility resolves to Plus Jakarta Sans in build CSS.
 - **Est**: ~6 lines.
 
-### 2.2 Add section rhythm spacing token
+### 2.2 Add section rhythm spacing token ✅
 - **Files**: `src/styles/global.css`
 - **Satisfies**: REQ-SITE-FDN-021
 - Add `--spacing-section-y-lg: 7rem` to `@theme` after `--spacing-section-y-sm`.
 - **Acceptance**: Token resolves; usable via `py-[var(--spacing-section-y-lg)]`.
 - **Est**: ~2 lines.
 
-### 2.3 Update Section.astro: rhythm prop + remove eyebrow rendering
+### 2.3 Update Section.astro: rhythm prop + remove eyebrow rendering ✅
 - **Files**: `src/components/Section.astro`
 - **Satisfies**: REQ-SITE-FDN-021, REQ-SITE-FDN-015
 - Add `padding?: 'compact' | 'default' | 'spacious'` prop (default `'default'`). Map: compact → `py-[var(--spacing-section-y-sm)]`, default → `py-[var(--spacing-section-y)]`, spacious → `py-[var(--spacing-section-y-lg)]`. Remove the `eyebrow` prop and its `<span>` rendering block entirely.
 - **Acceptance**: `<Section padding="spacious">` applies 7rem padding; no eyebrow markup in rendered output; `astro check` passes.
 - **Est**: ~15 added, ~12 removed.
 
-### 2.4 Migrate pain data: number → icon
+### 2.4 Migrate pain data: number → icon ✅
 - **Files**: `src/data/pains.ts`, `astro.config.mjs`
 - **Satisfies**: REQ-SITE-FDN-018, REQ-HOME-003
 - Change `Pain` interface: `number: number` → `icon: string`. Update all 5 entries: Vacancia → `door-front`, Mora → `payments`, Mantenimiento → `handyman`, Riesgo legal → `gavel`, Entrega → `assignment-return`. Add these 5 icon names to the `material-symbols` include array in `astro.config.mjs`.
 - **Acceptance**: `astro check` passes with no stale `.number` references; icons resolve at build.
 - **Est**: ~13 added, ~8 removed.
 
-### 2.5 Update PainCard.astro: icon replaces number
+### 2.5 Update PainCard.astro: icon replaces number ✅
 - **Files**: `src/components/PainCard.astro`
 - **Satisfies**: REQ-HOME-003, REQ-SITE-FDN-015
 - Import `Icon` from `astro-icon/components`. Replace the big `01`-`05` numeral block with `<Icon name={`material-symbols:${pain.icon}`} class="text-2xl text-accent-500" aria-hidden="true" />`. Remove `pain.number` reference.
 - **Acceptance**: Five pain cards render material-symbols icons in accent-500; no sequential numbers visible.
 - **Est**: ~8 added, ~4 removed.
 
-### 2.6 Update index.astro: remove eyebrows, apply rhythm, switch headings to font-display
+### 2.6 Update index.astro: remove eyebrows, apply rhythm, switch headings to font-display ✅
 - **Files**: `src/pages/index.astro`
 - **Satisfies**: REQ-HOME-001, REQ-SITE-FDN-019, REQ-SITE-FDN-021
 - Remove all `eyebrow=` props from `<Section>` instances. Fold "Nuestro compromiso" into the pilares `intro`. Change dolores heading from `heading="Los cinco dolores…"` with eyebrow "¿Te suena familiar?" to heading="¿Te suena familiar? Los cinco dolores del propietario". Replace hero `containerClass="!py-[var(--spacing-section-y-sm)]"` with `padding="compact"`. Add `padding="spacious"` to contacto-cta. Switch H1 and all H2 `class` from `font-bold`/`font-semibold` to include `font-display`.
 - **Acceptance**: No `eyebrow` prop on any `<Section>`; hero H1 uses `font-display`; CTA section has spacious (7rem) padding; `astro check` passes.
 - **Est**: ~15 added, ~12 removed.
 
-### 2.7 Validate accent contrast (REQ-SITE-FDN-023)
-- **Files**: none (verification — document in commit body)
+### 2.7 Validate accent contrast (REQ-SITE-FDN-023) ✅
+- **Files**: `src/styles/global.css` (accent-600 adjusted to `#8a5d0b`)
 - **Satisfies**: REQ-SITE-FDN-023
 - Calculate contrast ratios: accent-600 `#9c6e1f` on surface `#fafaf7` (must be ≥4.5:1 for normal text); accent-500 `#c69034` on primary-600 `#0f1e36` (must be ≥3:1 for large text / UI). If accent-600 falls below 4.5:1, darken to `#8a5d0b`, update token, and rebuild.
 - **Acceptance**: All accent-to-surface and accent-on-primary combinations pass WCAG AA; ratios documented in the commit message.
 - **Est**: 0 lines (or ~2 if token adjusted).
 
-**Batch 2 total**: ~59 added, ~36 removed = ~95 changed lines.
+**Batch 2 total**: ~59 added, ~36 removed = ~95 changed lines. ✅ All complete.
+**Review budget (excl. package-lock.json)**: ~95 added + ~58 removed = ~153 changed lines.
 
 ## Implementation Order
 

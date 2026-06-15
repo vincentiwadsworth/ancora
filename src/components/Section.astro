@@ -1,22 +1,22 @@
 ---
 interface Props {
   id?: string;
-  eyebrow?: string;
   heading?: string;
   intro?: string;
   as?: 'section' | 'div' | 'article' | 'aside';
   containerClass?: string;
   background?: 'default' | 'muted' | 'inverse';
+  padding?: 'compact' | 'default' | 'spacious';
 }
 
 const {
   id,
-  eyebrow,
   heading,
   intro,
   as: Tag = 'section',
   containerClass = '',
   background = 'default',
+  padding = 'default',
 } = Astro.props;
 
 const headingId = id && heading ? `${id}-heading` : undefined;
@@ -26,25 +26,26 @@ const bgClasses = {
   muted: 'bg-surface-muted',
   inverse: 'bg-primary-600 text-white',
 }[background];
+
+const paddingClasses = {
+  compact: 'py-[var(--spacing-section-y-sm)]',
+  default: 'py-[var(--spacing-section-y)]',
+  spacious: 'py-[var(--spacing-section-y-lg)]',
+}[padding];
 ---
 
 <Tag
   id={id}
   aria-labelledby={headingId}
-  class:list={[`py-[var(--spacing-section-y)]`, bgClasses, containerClass]}
+  class:list={[paddingClasses, bgClasses, containerClass]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    {(eyebrow || heading || intro) && (
+    {(heading || intro) && (
       <div class="mb-12 max-w-3xl">
-        {eyebrow && (
-          <span class="text-sm font-semibold uppercase tracking-wider text-primary-600">
-            {eyebrow}
-          </span>
-        )}
         {heading && (
           <h2
             id={headingId}
-            class="mt-2 text-3xl font-semibold leading-tight sm:text-4xl"
+            class="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl"
           >
             {heading}
           </h2>

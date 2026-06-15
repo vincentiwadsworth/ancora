@@ -1,13 +1,15 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/Section.astro';
-import PillarCard from '../components/PillarCard.astro';
+import { Icon } from 'astro-icon/components';
+import ComparisonVisual from '../components/ComparisonVisual.astro';
+import HeroVisual from '../components/HeroVisual.astro';
 import PainCard from '../components/PainCard.astro';
+import PillarCard from '../components/PillarCard.astro';
+import Section from '../components/Section.astro';
 import SegmentedCta from '../components/SegmentedCta.astro';
-import { Icon } from "astro-icon/components";
-import { pillars } from '../data/pillars';
-import { pains } from '../data/pains';
 import { site } from '../config/site';
+import { pains } from '../data/pains';
+import { pillars } from '../data/pillars';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -40,19 +42,24 @@ const jsonLd = {
     background="default"
     containerClass="!py-[var(--spacing-section-y-sm)]"
   >
-    <div class="max-w-3xl">
-      <h1 class="text-4xl font-bold leading-tight text-primary-600 sm:text-5xl">
-        Administramos tu propiedad. Vos descansás.
-      </h1>
-      <p class="mt-6 text-lg text-neutral-600 sm:text-xl">
-        ANCORA es una empresa especializada en la administración integral de
-        propiedades residenciales en Bolivia. Nos encargamos de todo el proceso
-        para que tu inmueble genere rentabilidad sin que tengas que ocuparte del
-        día a día.
-      </p>
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <SegmentedCta intent="evaluate" variant="primary" />
-        <SegmentedCta intent="general" variant="secondary" />
+    <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-bold leading-tight text-primary-600 sm:text-5xl">
+          Administramos tu propiedad. Vos descansás.
+        </h1>
+        <p class="mt-6 text-lg text-neutral-600 sm:text-xl">
+          ANCORA es una empresa especializada en la administración integral de
+          propiedades residenciales en Bolivia. Nos encargamos de todo el proceso
+          para que tu inmueble genere rentabilidad sin que tengas que ocuparte del
+          día a día.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <SegmentedCta intent="evaluate" variant="primary" />
+          <SegmentedCta intent="general" variant="secondary" />
+        </div>
+      </div>
+      <div class="relative flex justify-center md:justify-end">
+        <HeroVisual />
       </div>
     </div>
   </Section>
@@ -90,69 +97,7 @@ const jsonLd = {
     intro="Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual."
     background="muted"
   >
-    <div class="overflow-x-auto">
-      <table class="w-full min-w-160 border-collapse text-left">
-        <thead>
-          <tr>
-            <th class="border-b border-neutral-200 p-4 text-sm font-semibold uppercase tracking-wider text-neutral-500">
-              Fase
-            </th>
-            <th class="border-b border-neutral-200 p-4 text-sm font-semibold uppercase tracking-wider text-neutral-500">
-              Servicio
-            </th>
-            <th class="border-b border-neutral-200 p-4 text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
-              Inmobiliaria tradicional
-            </th>
-            <th class="border-b border-neutral-200 p-4 text-center text-sm font-semibold uppercase tracking-wider text-primary-600">
-              ANCORA
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            { fase: 'FASE 1 — Captación', rows: [
-              { servicio: 'Captación', trad: true, ancora: true },
-              { servicio: 'Evaluación', trad: true, ancora: true },
-              { servicio: 'Contrato', trad: true, ancora: true },
-            ]},
-            { fase: 'FASE 2 — Administración', rows: [
-              { servicio: 'Cobranza', trad: false, ancora: true },
-              { servicio: 'Seguimiento', trad: false, ancora: true },
-              { servicio: 'Mantenimiento', trad: false, ancora: true },
-            ]},
-            { fase: 'FASE 3 — Renovación & Cierre', rows: [
-              { servicio: 'Renovación', trad: false, ancora: true },
-              { servicio: 'Entrega', trad: false, ancora: true },
-              { servicio: 'Cierre', trad: false, ancora: true },
-            ]},
-          ].map((group) => (
-            <>
-              <tr>
-                <td colspan="4" class="border-b border-neutral-200 bg-surface-muted p-3 text-sm font-semibold uppercase tracking-wider text-primary-600">
-                  {group.fase}
-                </td>
-              </tr>
-              {group.rows.map((row) => (
-                <tr>
-                  <td class="border-b border-neutral-200 p-4"></td>
-                  <td class="border-b border-neutral-200 p-4 text-sm text-neutral-700">{row.servicio}</td>
-                  <td class="border-b border-neutral-200 p-4 text-center text-lg">
-                    {row.trad ? (
-                      <span class="text-neutral-500" aria-label="Incluido">✓</span>
-                    ) : (
-                      <span class="text-neutral-300" aria-label="No incluido">✗</span>
-                    )}
-                  </td>
-                  <td class="border-b border-neutral-200 p-4 text-center text-lg text-primary-600">
-                    <span aria-label="Incluido">✓</span>
-                  </td>
-                </tr>
-              ))}
-            </>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <ComparisonVisual />
     <p class="mt-8 text-base text-neutral-600">
       Muchas inmobiliarias terminan su trabajo cuando se firma el contrato.
       ANCORA continúa administrando durante toda la relación contractual.

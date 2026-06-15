@@ -1,0 +1,94 @@
+---
+interface ComparisonPhase {
+  label: string;
+  services: { name: string; traditional: boolean; ancora: boolean }[];
+}
+
+interface Props {
+  phases?: ComparisonPhase[];
+}
+
+const defaultPhases: ComparisonPhase[] = [
+  {
+    label: 'FASE 1 — Captación',
+    services: [
+      { name: 'Captación', traditional: true, ancora: true },
+      { name: 'Evaluación', traditional: true, ancora: true },
+      { name: 'Contrato', traditional: true, ancora: true },
+    ],
+  },
+  {
+    label: 'FASE 2 — Administración',
+    services: [
+      { name: 'Cobranza', traditional: false, ancora: true },
+      { name: 'Seguimiento', traditional: false, ancora: true },
+      { name: 'Mantenimiento', traditional: false, ancora: true },
+    ],
+  },
+  {
+    label: 'FASE 3 — Renovación & Cierre',
+    services: [
+      { name: 'Renovación', traditional: false, ancora: true },
+      { name: 'Entrega', traditional: false, ancora: true },
+      { name: 'Cierre', traditional: false, ancora: true },
+    ],
+  },
+];
+
+const phases = Astro.props.phases ?? defaultPhases;
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+  {
+    phases.map((phase) => (
+      <div class="rounded-lg border border-neutral-200 bg-white">
+        <!-- Phase header -->
+        <div class="border-b border-neutral-200 bg-surface-muted px-4 py-3">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-primary-600">
+            {phase.label}
+          </h3>
+        </div>
+        <!-- Services -->
+        <ul role="list">
+          {phase.services.map((service) => (
+            <li class="flex items-center gap-3 border-b border-neutral-100 px-4 py-3 last:border-b-0">
+              <span class="min-w-0 flex-1 text-sm text-neutral-700">
+                {service.name}
+              </span>
+              <span
+                class="inline-flex shrink-0 items-center justify-center text-sm"
+                class:list={[
+                  service.traditional
+                    ? 'text-neutral-500'
+                    : 'text-neutral-300',
+                ]}
+                aria-label={
+                  service.traditional
+                    ? 'Inmobiliaria tradicional: incluido'
+                    : 'Inmobiliaria tradicional: no incluido'
+                }
+              >
+                {service.traditional ? '✓' : '✗'}
+              </span>
+              <span
+                class="inline-flex shrink-0 items-center justify-center text-sm text-accent-500"
+                aria-label="ANCORA: incluido"
+              >
+                ✓
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  /* Prevent overflow at 375px */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+</style>

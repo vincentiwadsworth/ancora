@@ -5,10 +5,12 @@ import Logo from './Logo.astro';
 
 const year = new Date().getFullYear();
 
+const base = import.meta.env.BASE_URL;
+
 const navItems = [
-  { href: '/services', label: 'Servicios' },
-  { href: '/about', label: 'Sobre nosotros' },
-  { href: '/contact', label: 'Contacto' },
+  { href: `${base}/services`, label: 'Servicios' },
+  { href: `${base}/about`, label: 'Sobre nosotros' },
+  { href: `${base}/contact`, label: 'Contacto' },
 ];
 
 const socialItems = [

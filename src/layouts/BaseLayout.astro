@@ -6,11 +6,11 @@ import { site } from '../config/site';
 import '../styles/global.css';
 
 interface Props {
-  page: PageKey;
+  page?: PageKey;
   jsonLd?: Record<string, unknown>;
 }
 
-const { page, jsonLd } = Astro.props;
+const { page = 'home', jsonLd } = Astro.props;
 const meta = getPageMeta(page);
 ---
 

@@ -5,14 +5,15 @@ import Logo from './Logo.astro';
 
 const year = new Date().getFullYear();
 
-const base = import.meta.env.BASE_URL;
-
 const navItems = [
-  { href: `${base}/services`, label: 'Servicios' },
-  { href: `${base}/about`, label: 'Sobre nosotros' },
-  { href: `${base}/contact`, label: 'Contacto' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#como-funciona', label: 'Cómo funciona' },
+  { href: '#preguntas', label: 'Preguntas frecuentes' },
 ];
 
+// TODO: confirm real phone number with client — current value is a placeholder.
+// NOTE: social icons stay on material-symbols until PR 3 migrates all components
+// to Phosphor ( REQ-SITE-FDN-005 lists Instagram/Facebook/LinkedIn only ).
 const socialItems = [
   {
     href: site.socialHandles.instagram,
@@ -40,6 +41,7 @@ const socialItems = [
         </h3>
         <ul class="mt-4 space-y-2 text-sm text-neutral-100">
           <li>
+            {/* TODO: replace placeholder phone once client confirms */}
             <a href={`tel:${site.phone.replace(/\s+/g, '')}`} class="hover:underline">
               {site.phone}
             </a>

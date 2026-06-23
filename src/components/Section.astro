@@ -2,6 +2,7 @@
 interface Props {
   id?: string;
   heading?: string;
+  headingClass?: string;
   intro?: string;
   as?: 'section' | 'div' | 'article' | 'aside';
   containerClass?: string;
@@ -12,6 +13,7 @@ interface Props {
 const {
   id,
   heading,
+  headingClass = '',
   intro,
   as: Tag = 'section',
   containerClass = '',
@@ -37,7 +39,7 @@ const paddingClasses = {
 <Tag
   id={id}
   aria-labelledby={headingId}
-  class:list={[paddingClasses, bgClasses, containerClass]}
+  class:list={['scroll-mt-20', paddingClasses, bgClasses, containerClass]}
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     {(heading || intro) && (
@@ -45,7 +47,10 @@ const paddingClasses = {
         {heading && (
           <h2
             id={headingId}
-            class="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl"
+            class:list={[
+              'mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl',
+              headingClass,
+            ]}
           >
             {heading}
           </h2>

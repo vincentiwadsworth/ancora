@@ -1,13 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
-import ComparisonVisual from '../components/ComparisonVisual.astro';
 import PainCard from '../components/PainCard.astro';
-import PillarCard from '../components/PillarCard.astro';
 import Section from '../components/Section.astro';
-import SegmentedCta from '../components/SegmentedCta.astro';
-import { site } from '../config/site';
+import ServiceCard from '../components/ServiceCard.astro';
+import { site, whatsappLink } from '../config/site';
 import { pains } from '../data/pains';
-import { pillars } from '../data/pillars';
+import { pricing } from '../data/pricing';
+import { services } from '../data/services';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const jsonLd = {
@@ -33,47 +32,101 @@ const jsonLd = {
   ],
   email: site.email,
 };
+
+// PR 3 will extract these inline placeholders into dedicated components:
+// TrustStrip, ProcessCycle, MonthlyReport, PricingCard, FaqAccordion, and the
+// ComparisonVisual rewrite. Copy below is intentionally simple/placeholder.
+const trustItems = [
+  { icon: 'shield-check', label: 'Menos vacancia / Más ingresos' },
+  { icon: 'scales', label: 'Menos riesgo legal / Más protección' },
+  { icon: 'clock', label: 'Menos tiempo invertido / Más tranquilidad' },
+];
+
+const processSteps = [
+  'Captar',
+  'Gestión contractual',
+  'Cobranzas',
+  'Comunicación',
+  'Mantenimientos',
+  'Reportar',
+  'Gestionar fin',
+];
+
+// TODO: replace placeholder answers with client-confirmed copy before PR 3.
+const faqItems = [
+  {
+    q: '¿Qué incluye la administración de ANCORA?',
+    a: 'TODO: confirmar con el cliente. Placeholder: captación y evaluación de inquilinos, contrato bajo escritura pública, cobranza activa, coordinación de mantenimientos y reporte mensual con liquidación.',
+  },
+  {
+    q: '¿Cuánto cuesta el servicio?',
+    a: 'TODO: confirmar con el cliente. Placeholder: cobramos 7% del canon mensual. Sin alquiler cobrado, no hay fee de administración.',
+  },
+  {
+    q: '¿Cómo eligen a los inquilinos?',
+    a: 'TODO: confirmar con el cliente. Placeholder: evaluamos documentación y antecedentes antes de recomendar un inquilino.',
+  },
+  {
+    q: '¿Qué pasa si el inquilino no paga?',
+    a: 'TODO: confirmar con el cliente. Placeholder: gestionamos la cobranza desde el primer día de atraso, sin esperar a fin de mes.',
+  },
+  {
+    q: '¿Cómo recibo mis ingresos?',
+    a: 'TODO: confirmar con el cliente. Placeholder: cada mes recibís un reporte con la liquidación detallada y la transferencia neta a tu cuenta.',
+  },
+  {
+    q: '¿Qué pasa cuando finaliza el contrato?',
+    a: 'TODO: confirmar con el cliente. Placeholder: hacemos la inspección de entrega y la conciliación final de la relación contractual.',
+  },
+];
+
+const ctaAsesoria = whatsappLink('solicitarAsesoria');
+const ctaWhatsApp = whatsappLink('general');
+const underlinedHeading =
+  'uppercase tracking-wider underline decoration-accent-500 decoration-2 underline-offset-4';
 ---
 
 <BaseLayout page="home" jsonLd={jsonLd}>
-  <Section
-    id="hero"
-    background="default"
-    padding="spacious"
-  >
+  {/* Hero */}
+  {/* TODO(PR 4): add lifestyle background <img> overlay with text-safe gradient */}
+  <Section id="hero" background="default" padding="spacious">
     <div class="mx-auto max-w-4xl text-center">
       <h1 class="font-display text-5xl font-bold leading-tight text-primary-600 sm:text-6xl">
-        Administramos tu propiedad. Vos descansás.
+        Tu propiedad genera renta.{' '}
+        <span class="text-accent-500">Vos solo cobrás.</span>
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 sm:text-xl">
-        Administración integral de propiedades residenciales en Bolivia. Nos encargamos de todo para que tu inmueble genere rentabilidad.
+        Administración profesional de propiedades residenciales en alquiler en Bolivia. Nos encargamos de todo para que tu inmueble genere rentabilidad.
       </p>
       <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <SegmentedCta intent="evaluate" variant="primary" />
-        <SegmentedCta intent="general" variant="secondary" />
+        <a
+          href={ctaAsesoria}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+        >
+          <Icon name="ph:whatsapp-logo" aria-hidden="true" />
+          Solicitar asesoría gratuita
+        </a>
       </div>
-      <p class="mt-6 text-sm text-neutral-500">
-        Especialistas en gestión inmobiliaria en Bolivia
-      </p>
+      {/* TODO(PR 3): replace inline trust strip with TrustStrip.astro */}
+      <ul class="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
+        {trustItems.map((item) => (
+          <li class="flex items-center gap-3 text-sm text-neutral-700">
+            <Icon name={`ph:${item.icon}`} class="text-2xl text-accent-500" aria-hidden="true" />
+            <span>{item.label}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </Section>
 
-  <Section
-    id="pilares"
-    heading="Tres compromisos con tu patrimonio"
-    intro="Menos vacancia, menos riesgo legal, menos tiempo invertido por vos."
-    background="muted"
-  >
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {pillars.map((pillar) => <PillarCard pillar={pillar} />)}
-    </div>
-  </Section>
-
+  {/* Dolores */}
   <Section
     id="dolores"
-    heading="¿Te suena familiar? Los cinco dolores del propietario"
+    heading="¿Compraste un inmueble para generar ingresos o para administrar problemas?"
     intro="Los problemas que enfrentás cuando administrás solo."
-    background="default"
+    background="muted"
   >
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
       {pains.map((pain) => <PainCard pain={pain} />)}
@@ -83,59 +136,164 @@ const jsonLd = {
     </p>
   </Section>
 
+  {/* Cómo funciona */}
+  <Section
+    id="como-funciona"
+    heading="¿Cómo funciona?"
+    headingClass={underlinedHeading}
+    intro="Un ciclo completo de administración, de la captación al cierre."
+    background="default"
+  >
+    {/* TODO(PR 3): replace linear list with ProcessCycle.astro (circular SVG, 7 nodes) */}
+    <ol class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {processSteps.map((step, index) => (
+        <li class="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-4">
+          <span class="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span class="text-sm font-semibold text-primary-600">{step}</span>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  {/* Servicios */}
+  <Section
+    id="servicios"
+    heading="Servicios"
+    headingClass={underlinedHeading}
+    intro="Cobertura completa: desde la captación hasta la entrega del inmueble."
+    background="muted"
+  >
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {services.map((service) => (
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          icon={service.icon}
+        />
+      ))}
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {/* TODO(PR 3): replace with MonthlyReport.astro (border card + table + interior photo) */}
+      <div class="rounded-xl border border-neutral-200 bg-white p-6">
+        <h3 class="text-lg font-semibold text-primary-600">Reporte mensual</h3>
+        <p class="mt-1 text-sm text-neutral-500">Junio 2026 — ejemplo</p>
+        <dl class="mt-6 space-y-3 text-base">
+          <div class="flex items-baseline justify-between">
+            <dt class="text-neutral-600">Canon cobrado</dt>
+            <dd class="font-semibold text-primary-600">{pricing.example.rent}</dd>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <dt class="text-neutral-600">Fee ANCORA ({pricing.feePercentage})</dt>
+            <dd class="font-semibold text-neutral-500">– {pricing.example.fee}</dd>
+          </div>
+          <div class="flex items-baseline justify-between border-t border-neutral-200 pt-3">
+            <dt class="font-semibold text-primary-600">Vos recibís</dt>
+            <dd class="text-xl font-bold text-primary-600">{pricing.example.net}</dd>
+          </div>
+        </dl>
+      </div>
+
+      {/* TODO(PR 3): replace with PricingCard.astro (tariff breakdown + CTA) */}
+      <div class="rounded-xl border border-accent-200 bg-accent-50 p-6">
+        <h3 class="text-lg font-semibold text-primary-600">Tarifa</h3>
+        <p class="mt-2 text-3xl font-bold text-primary-600">{pricing.feePercentage}</p>
+        <p class="mt-1 text-sm text-neutral-600">{pricing.rate}</p>
+        <p class="mt-4 text-sm italic text-neutral-500">{pricing.disclaimer}</p>
+        <a
+          href={ctaAsesoria}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+        >
+          Calcular mi administración
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  {/* Diferenciación */}
   <Section
     id="diferenciacion"
     heading="La diferencia entre alquilar y administrar"
-    intro="Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual."
-    background="muted"
-  >
-    <ComparisonVisual />
-  </Section>
-
-  <Section
-    id="testimonios"
-    heading="Lo que dicen nuestros clientes"
-    intro="Pronto publicaremos testimonios reales de propietarios que ya trabajan con ANCORA."
+    intro="Inmobiliaria tradicional, administrador independiente y ANCORA, lado a lado."
     background="default"
   >
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-      {[1, 2].map(() => (
-        <figure class="rounded-lg border border-dashed border-neutral-300 bg-white p-8">
-          <Icon name="material-symbols:format-quote" class="text-4xl text-primary-600" aria-hidden="true" />
-          <blockquote class="mt-4 text-base italic text-neutral-500">
-            Testimonio de cliente — próximo a publicar.
-          </blockquote>
-          <figcaption class="mt-4 text-sm font-semibold text-neutral-700">
-            Nombre del cliente
-          </figcaption>
-          <div class="mt-2 text-sm text-neutral-400" aria-label="Calificación pendiente">
-            ★ ★ ★ ★ ★
-          </div>
-        </figure>
+    {/* TODO(PR 3): replace with ComparisonVisual.astro (3-tab pill selector + 9-row checklist) */}
+    <div class="rounded-lg border border-dashed border-neutral-300 bg-surface-muted p-8 text-center">
+      <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500">
+        Próximamente
+      </p>
+      <p class="mt-2 text-base text-neutral-600">
+        Comparativa de 3 columnas: Inmobiliaria tradicional · Administrador · ANCORA.
+      </p>
+    </div>
+  </Section>
+
+  {/* Preguntas frecuentes */}
+  <Section
+    id="preguntas"
+    heading="Preguntas frecuentes"
+    headingClass={underlinedHeading}
+    intro="Respuestas a las dudas más comunes de los propietarios."
+    background="muted"
+  >
+    {/* TODO(PR 3): replace with FaqAccordion.astro (+/- CSS, single-open JS) */}
+    <div class="mx-auto max-w-3xl divide-y divide-neutral-200">
+      {faqItems.map((item) => (
+        <details class="group py-4">
+          <summary class="flex cursor-pointer list-none items-center justify-between text-base font-semibold text-primary-600">
+            {item.q}
+            <Icon
+              name="ph:caret-down"
+              class="text-xl text-neutral-400 transition-transform group-open:rotate-180"
+              aria-hidden="true"
+            />
+          </summary>
+          <p class="mt-3 text-base text-neutral-600">{item.a}</p>
+        </details>
       ))}
     </div>
   </Section>
 
-  <Section
-    id="contacto-cta"
-    background="inverse"
-    padding="spacious"
-  >
-    <div class="text-center">
+  {/* CTA final */}
+  {/* TODO(PR 4): add building dusk background <img> overlay with gradient */}
+  <Section id="cta-final" background="inverse" padding="spacious">
+    <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-display text-3xl font-semibold text-white sm:text-4xl">
-        ¿Listo para que tu propiedad trabaje para vos?
+        Tu patrimonio merece administración profesional.
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-200">
-        Agendá una evaluación sin costo de tu propiedad.
+        Agendá una asesoría gratuita o escribinos por WhatsApp.
       </p>
-      <div class="mt-8 flex justify-center">
-        <SegmentedCta
-          intent="evaluate"
-          variant="primary"
-          label="Evaluar mi propiedad"
-          class="!bg-white !text-primary-600 hover:!bg-neutral-100"
-        />
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href={ctaAsesoria}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-primary-600 transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+        >
+          <Icon name="ph:calendar-check" aria-hidden="true" />
+          Agendar asesoría gratuita
+        </a>
+        <a
+          href={ctaWhatsApp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-md border border-neutral-300 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+        >
+          <Icon name="ph:phone" aria-hidden="true" />
+          Escribinos por WhatsApp
+        </a>
       </div>
     </div>
   </Section>
 </BaseLayout>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

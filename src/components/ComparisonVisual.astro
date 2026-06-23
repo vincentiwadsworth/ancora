@@ -1,170 +1,66 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-// ComparisonVisual.astro — REQ-1PH-004
-// 3-tab pill selector (Inmobiliaria tradicional / Administrador / ANCORA)
-// revealing a 9-row checklist per column. ANCORA checks every row.
-// Tab switching via vanilla JS with full ARIA tab semantics.
-
-interface Column {
-  id: string;
-  label: string;
-  checks: boolean[];
-}
-
+// 3-column comparison table matching Slide 3 reference.
 const rows = [
-  'Captación del inmueble',
-  'Evaluación de inquilinos',
-  'Contrato bajo escritura pública',
-  'Cobranza desde el día 1 de atraso',
-  'Comunicación permanente con el propietario',
-  'Coordinación de mantenimientos',
-  'Reporte mensual con liquidación',
-  'Gestión de conflictos y morosidad',
-  'Inspección y entrega del inmueble',
+  'Captación',
+  'Evaluación',
+  'Contrato',
+  'Seguimiento',
+  'Mantenim.',
+  'Cobranza',
+  'Renovación',
+  'Entrega',
+  'Cierre',
 ];
 
-const columns: Column[] = [
+const columns = [
   {
-    id: 'inmobiliaria',
     label: 'Inmobiliaria tradicional',
     checks: [true, true, true, false, false, false, false, false, false],
   },
   {
-    id: 'administrador',
     label: 'Administrador',
     checks: [true, false, true, true, true, true, false, false, true],
   },
   {
-    id: 'ancora',
     label: 'ANCORA',
     checks: [true, true, true, true, true, true, true, true, true],
   },
 ];
 ---
 
-<div data-comparison>
-  <div
-    role="tablist"
-    aria-label="Comparativa de opciones de administración"
-    class="flex flex-wrap gap-2"
-  >
-    {columns.map((col, i) => (
-      <button
-        type="button"
-        role="tab"
-        id={`tab-${col.id}`}
-        aria-selected={i === 0 ? 'true' : 'false'}
-        aria-controls={`panel-${col.id}`}
-        tabindex={i === 0 ? 0 : -1}
-        data-tab={col.id}
-        class="comp-tab rounded-full px-4 py-2 text-sm font-semibold transition-colors"
-      >
-        {col.label}
-      </button>
-    ))}
-  </div>
-
-  {columns.map((col, i) => (
-    <div
-      role="tabpanel"
-      id={`panel-${col.id}`}
-      aria-labelledby={`tab-${col.id}`}
-      data-panel={col.id}
-      hidden={i !== 0}
-      class="mt-6 overflow-hidden rounded-lg border border-neutral-200 bg-white"
-    >
-      <div class="border-b border-neutral-200 bg-surface-muted px-4 py-3">
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-primary-600">
-          {col.label}
-        </h3>
-      </div>
-      <ul role="list">
-        {rows.map((row, ri) => (
-          <li class="flex items-center gap-3 border-b border-neutral-100 px-4 py-3 last:border-b-0">
-            <span class="min-w-0 flex-1 text-sm text-neutral-700">{row}</span>
-            {col.checks[ri] ? (
-              <Icon
-                name="ph:check-circle"
-                class="size-5 shrink-0 text-accent-500"
-                aria-label="Incluido"
-              />
-            ) : (
-              <Icon
-                name="ph:x"
-                class="size-5 shrink-0 text-neutral-300"
-                aria-label="No incluido"
-              />
-            )}
-          </li>
+<div class="overflow-x-auto">
+  <table class="w-full min-w-[600px] border-collapse text-sm">
+    <thead>
+      <tr>
+        <th scope="col" class="border-b border-neutral-200 py-3 text-left font-normal text-neutral-500"></th>
+        {columns.map((col) => (
+          <th scope="col" class="border-b border-neutral-200 px-3 py-3 text-center text-base font-semibold text-primary-600">
+            {col.label}
+          </th>
         ))}
-      </ul>
-    </div>
-  ))}
-
-  <!-- TODO: verify copy -->
-  <p class="mt-6 text-sm text-neutral-600">
-    ANCORA cubre las 9 etapas del ciclo; las demás opciones delegan parte del
-    riesgo y del trabajo al propietario.
-  </p>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-neutral-100">
+      {rows.map((row, ri) => (
+        <tr>
+          <th scope="row" class="py-3 text-left font-normal text-neutral-700">{row}</th>
+          {columns.map((col) => (
+            <td class="px-3 py-3 text-center">
+              {col.checks[ri] ? (
+                <Icon name="ph:check-circle" class="mx-auto size-5 text-accent-500" aria-label="Incluido" />
+              ) : (
+                <span class="sr-only">No incluido</span>
+              )}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
 </div>
 
-<style>
-  .comp-tab {
-    border: 1px solid var(--color-neutral-300);
-    background: #ffffff;
-    color: var(--color-primary-600);
-  }
-
-  .comp-tab:hover {
-    background: var(--color-neutral-100);
-  }
-
-  .comp-tab[aria-selected='true'] {
-    background: var(--color-primary-600);
-    color: #ffffff;
-    border-color: var(--color-primary-600);
-  }
-</style>
-
-<script>
-  const root = document.querySelector<HTMLElement>('[data-comparison]');
-  if (root) {
-    const tabs = Array.from(
-      root.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
-    );
-    const panels = Array.from(
-      root.querySelectorAll<HTMLDivElement>('[role="tabpanel"]'),
-    );
-
-    const show = (id: string) => {
-      for (const tab of tabs) {
-        const active = tab.dataset.tab === id;
-        tab.setAttribute('aria-selected', String(active));
-        tab.tabIndex = active ? 0 : -1;
-      }
-      for (const panel of panels) {
-        panel.hidden = panel.dataset.panel !== id;
-      }
-    };
-
-    for (const tab of tabs) {
-      tab.addEventListener('click', () => show(tab.dataset.tab ?? ''));
-    }
-
-    // Arrow-key navigation between tabs (WAI-ARIA tabs pattern).
-    root.addEventListener('keydown', (event: KeyboardEvent) => {
-      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-      const current = tabs.findIndex(
-        (tab) => tab.getAttribute('aria-selected') === 'true',
-      );
-      const next =
-        event.key === 'ArrowRight'
-          ? (current + 1) % tabs.length
-          : (current - 1 + tabs.length) % tabs.length;
-      const target = tabs[next];
-      target?.focus();
-      show(target?.dataset.tab ?? '');
-    });
-  }
-</script>
+<p class="mt-6 text-sm text-neutral-600">
+  Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual.
+</p>

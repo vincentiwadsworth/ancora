@@ -1,34 +1,33 @@
 ---
-// ProcessCycle.astro — REQ-1PH-002
-// Circular 7-step administration cycle around a center ANCORA logo.
-// Desktop (>=768px): SVG diagram. Mobile (<768px): linear ordered list
-// fallback so the 7 labels never overflow at 375px.
+// ProcessCycle.astro
+// Circular 7-step administration cycle matching Slide 2 reference.
+// Desktop: SVG diagram. Mobile: linear ordered list fallback.
 
 const steps = [
-  { label: 'Captar', gold: true },
+  { label: 'Captar y filtrar clientes', gold: true },
   { label: 'Gestión contractual', gold: true },
+  { label: 'Comunicación con inquilinos', gold: false },
   { label: 'Cobranzas', gold: true },
-  { label: 'Comunicación', gold: false },
-  { label: 'Mantenimientos', gold: false },
-  { label: 'Reportar', gold: false },
-  { label: 'Gestionar fin', gold: false },
+  { label: 'Mantenimientos y reparaciones', gold: false },
+  { label: 'Reportar resultados', gold: false },
+  { label: 'Gestionar fin del contrato', gold: false },
 ];
 
 const CENTER = 200;
-const NODE_R = 140; // distance from center to node badges
-const BADGE_R = 28; // badge circle radius
-const LABEL_R = 176; // label distance from center (just outside badge)
-const SLICE = 360 / steps.length; // 51.4286 deg between nodes
+const NODE_R = 124;
+const BADGE_R = 26;
+const LABEL_R = 168;
+const SLICE = 360 / steps.length;
 
-const GOLD = '#c69034'; // accent-500
-const NAVY = '#0f1e36'; // primary-600
-const RING = '#e2e8f0'; // neutral-200
-const SPOKE = '#f1f5f9'; // neutral-100
+const GOLD = '#c69034';
+const NAVY = '#0f1e36';
+const RING = '#e2e8f0';
+const SPOKE = '#f1f5f9';
 const INK = '#0f1e36';
-const MUTED = '#64748b'; // neutral-500
+const MUTED = '#64748b';
 
 const nodes = steps.map((step, i) => {
-  const deg = -90 + i * SLICE; // start at top, clockwise
+  const deg = -90 + i * SLICE;
   const rad = (deg * Math.PI) / 180;
   return {
     ...step,
@@ -41,7 +40,7 @@ const nodes = steps.map((step, i) => {
 });
 ---
 
-{/* Mobile: linear fallback — avoids SVG label overflow at 375px */}
+{/* Mobile fallback */}
 <ol class="mx-auto max-w-md space-y-3 md:hidden">
   {nodes.map((node) => (
     <li class="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-3">
@@ -58,78 +57,48 @@ const nodes = steps.map((step, i) => {
   ))}
 </ol>
 
-{/* Desktop: circular SVG */}
-<div class="hidden px-8 md:block">
+{/* Desktop circular SVG */}
+<div class="hidden px-4 md:block">
   <svg
     viewBox="0 0 400 400"
     role="img"
-    aria-label="Ciclo de administración ANCORA con 7 etapas: Captar, Gestión contractual, Cobranzas, Comunicación, Mantenimientos, Reportar y Gestionar fin."
-    class="mx-auto w-full max-w-md"
+    aria-label="Ciclo de administración ANCORA: Captar y filtrar clientes, Gestión contractual, Comunicación con inquilinos, Cobranzas, Mantenimientos y reparaciones, Reportar resultados, Gestionar fin del contrato."
+    class="mx-auto w-full max-w-lg"
     style="overflow: visible;"
   >
-    {/* connecting ring */}
-    <circle
-      cx={CENTER}
-      cy={CENTER}
-      r={NODE_R}
-      fill="none"
-      stroke={RING}
-      stroke-width="2"
-    />
+    <circle cx={CENTER} cy={CENTER} r={NODE_R} fill="none" stroke={RING} stroke-width="2" />
 
-    {/* spokes from center to each node */}
     {nodes.map((node) => (
-      <line
-        x1={CENTER}
-        y1={CENTER}
-        x2={node.x}
-        y2={node.y}
-        stroke={SPOKE}
-        stroke-width="2"
-      />
+      <line x1={CENTER} y1={CENTER} x2={node.x} y2={node.y} stroke={SPOKE} stroke-width="2" />
     ))}
 
-    {/* center logo */}
-    <circle
-      cx={CENTER}
-      cy={CENTER}
-      r="46"
-      fill="#ffffff"
-      stroke={INK}
-      stroke-width="2"
-    />
+    <circle cx={CENTER} cy={CENTER} r="52" fill="#ffffff" stroke={INK} stroke-width="2" />
     <text
       x={CENTER}
-      y={CENTER - 2}
+      y={CENTER - 4}
       text-anchor="middle"
       font-family="Playfair Display, serif"
-      font-size="16"
+      font-size="18"
       font-weight="700"
-      letter-spacing="0.08em"
+      letter-spacing="0.06em"
       fill={INK}
     >
       ANCORA
     </text>
     <text
       x={CENTER}
-      y={CENTER + 14}
+      y={CENTER + 16}
       text-anchor="middle"
       font-family="Inter, sans-serif"
       font-size="8"
       fill={MUTED}
     >
-      ciclo completo
+      Administramos. Vos descansás.
     </text>
 
-    {/* nodes: badge + number + label */}
     {nodes.map((node) => (
       <g>
-        <circle
-          cx={node.x}
-          cy={node.y}
-          r={BADGE_R}
-          fill={node.gold ? GOLD : NAVY}
-        />
+        <circle cx={node.x} cy={node.y} r={BADGE_R} fill={node.gold ? GOLD : NAVY} />
         <text
           x={node.x}
           y={node.y + 5}
@@ -146,7 +115,7 @@ const nodes = steps.map((step, i) => {
           y={node.ly + 4}
           text-anchor="middle"
           font-family="Inter, sans-serif"
-          font-size="13"
+          font-size="12"
           font-weight="600"
           fill={INK}
         >

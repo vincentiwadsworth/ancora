@@ -1,56 +1,49 @@
 export interface Service {
   title: string;
   description: string;
-  icon: string; // Phosphor icon name, e.g. "user-check"
+  icon: string; // Phosphor icon name
 }
 
 export const services: Service[] = [
   {
-    title: 'Captación y evaluación',
-    description:
-      'Captamos y evaluamos documentadamente a cada inquilino antes de recomendarlo.',
+    title: 'Evaluación de inquilinos',
+    description: 'Verificamos y documentamos para minimizar riesgos.',
     icon: 'user-check',
   },
   {
-    title: 'Gestión contractual',
-    description:
-      'Contratos bajo escritura pública ante Notaría, con cláusulas que protegen al propietario.',
+    title: 'Contratos bajo escritura',
+    description: 'Públicos ante Notaría para tu máxima seguridad.',
     icon: 'scroll',
   },
   {
     title: 'Cobranza activa',
-    description:
-      'Cobranza gestada desde el día 1 de atraso, sin esperar a fin de mes.',
+    description: 'Seguimiento desde el día 1 de atraso.',
     icon: 'money',
   },
   {
-    title: 'Comunicación con propietarios',
-    description:
-      'Comunicación permanente y transparente sobre el estado de tu propiedad.',
-    icon: 'chats',
-  },
-  {
-    title: 'Mantenimientos',
-    description:
-      'Coordinación de técnicos y reparaciones con aprobación previa del propietario.',
+    title: 'Coordinación de mantenimientos',
+    description: 'Con aprobación previa y proveedores confiables.',
     icon: 'wrench',
   },
   {
-    title: 'Inspección y entrega',
-    description:
-      'Inspección inicial con registro fotográfico y control de entrega al finalizar.',
+    title: 'Inspección y registro',
+    description: 'Fotográfico del estado del inmueble al inicio y al cierre.',
     icon: 'camera',
   },
   {
-    title: 'Reportes mensuales',
+    title: 'Entrega y cierre',
     description:
-      'Reportes con liquidación detallada de ingresos, egresos y transferencia al propietario.',
+      'Verificamos, liquidamos garantías y gestionamos conciliaciones.',
+    icon: 'key',
+  },
+  {
+    title: 'Reportes mensuales',
+    description: 'Recibí un informe detallado con liquidación y novedades.',
     icon: 'chart-bar',
   },
   {
-    title: 'Gestión de conflictos',
-    description:
-      'Soporte legal en gestión de conflictos, morosidad y conciliaciones.',
-    icon: 'shield-check',
+    title: 'Atención personalizada',
+    description: 'Un equipo disponible para resolver lo que necesites.',
+    icon: 'chats',
   },
 ];

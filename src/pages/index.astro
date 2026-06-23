@@ -38,88 +38,109 @@ const jsonLd = {
   email: site.email,
 };
 
-// TODO: verify copy with client — answers are concise placeholders.
-const faqItems = [
-  {
-    q: '¿Qué incluye la administración de ANCORA?',
-    a: 'Captación y evaluación de inquilinos, contrato bajo escritura pública, cobranza activa, coordinación de mantenimientos y reporte mensual con liquidación.',
-  },
-  {
-    q: '¿Cuánto cuesta el servicio?',
-    a: 'Cobramos 7% del canon mensual. Sin alquiler cobrado, no hay fee de administración.',
-  },
-  {
-    q: '¿Cómo eligen a los inquilinos?',
-    a: 'Evaluamos documentación y antecedentes antes de recomendar un inquilino.',
-  },
-  {
-    q: '¿Qué pasa si el inquilino no paga?',
-    a: 'Gestionamos la cobranza desde el primer día de atraso, sin esperar a fin de mes.',
-  },
-  {
-    q: '¿Cómo recibo mis ingresos?',
-    a: 'Cada mes recibís un reporte con la liquidación detallada y la transferencia neta a tu cuenta.',
-  },
-  {
-    q: '¿Qué pasa cuando finaliza el contrato?',
-    a: 'Hacemos la inspección de entrega y la conciliación final de la relación contractual.',
-  },
-];
-
 const ctaAsesoria = whatsappLink('solicitarAsesoria');
 const ctaWhatsApp = whatsappLink('general');
-const underlinedHeading =
+
+const sectionHeading =
   'uppercase tracking-wider underline decoration-accent-500 decoration-2 underline-offset-4';
+
+// FAQ copy from Slide 4 reference. Answers are concise placeholders.
+const faqItems = [
+  {
+    q: '¿Qué pasa si el inquilino se atrasa?',
+    a: 'Gestionamos la cobranza desde el primer día de atraso y te mantenemos informado en cada paso.',
+  },
+  {
+    q: '¿Quién paga los mantenimientos?',
+    a: 'Coordinamos los mantenimientos con proveedores confiables y gestionamos el pago según lo acordado en el contrato.',
+  },
+  {
+    q: '¿Cómo seleccionan a los inquilinos?',
+    a: 'Verificamos ingresos, referencias y documentación antes de recomendar un inquilino.',
+  },
+  {
+    q: '¿Cada cuánto recibo mi dinero?',
+    a: 'Recibís la transferencia mensual junto con un reporte detallado de ingresos y egresos.',
+  },
+  {
+    q: '¿Trabajan con casas y departamentos?',
+    a: 'Sí, administramos propiedades residenciales en alquiler, ya sean casas o departamentos.',
+  },
+  {
+    q: '¿Hay permanencia mínima?',
+    a: 'No exigimos permanencia mínima a los propietarios. El contrato se ajusta a tus necesidades.',
+  },
+];
 ---
 
 <BaseLayout page="home" jsonLd={jsonLd}>
-  {/* Hero */}
-  {/* TODO(PR 4): add lifestyle background <img> overlay with text-safe gradient */}
-  <Section id="hero" background="default" padding="spacious">
-    <div class="mx-auto max-w-4xl text-center">
-      <h1 class="font-display text-5xl font-bold leading-tight text-primary-600 sm:text-6xl">
-        Tu propiedad genera renta.{' '}
-        <span class="text-accent-500">Vos solo cobrás.</span>
-      </h1>
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-600 sm:text-xl">
-        Administración profesional de propiedades residenciales en alquiler en Bolivia. Nos encargamos de todo para que tu inmueble genere rentabilidad.
-      </p>
-      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <a
-          href={ctaAsesoria}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-        >
-          <Icon name="ph:whatsapp-logo" aria-hidden="true" />
-          Solicitar asesoría gratuita
-        </a>
+  {/* Hero — full-width background image, text left-aligned like reference */}
+  <section
+    id="hero"
+    class="relative flex min-h-[640px] items-center scroll-mt-20 bg-primary-600 text-white"
+  >
+    {/* TODO(PR 4): replace with NanoBanana lifestyle photo */}
+    <div class="absolute inset-0">
+      <img
+        src="https://picsum.photos/seed/ancora-hero/1440/800"
+        alt=""
+        class="h-full w-full object-cover"
+        width="1440"
+        height="800"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-600/95 via-primary-600/80 to-primary-600/30"></div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h1 class="font-display text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
+          Tu propiedad genera renta.
+          <span class="block text-accent-500">Vos solo cobrás.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-neutral-100 sm:text-xl">
+          Administramos íntegramente tu inmueble para que generes ingresos sin ocuparte del día a día.
+        </p>
+        <div class="mt-8">
+          <a
+            href={ctaAsesoria}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-primary-600 transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+          >
+            <Icon name="ph:whatsapp-logo" aria-hidden="true" />
+            Solicitar asesoría gratuita
+          </a>
+        </div>
       </div>
+
       <TrustStrip />
     </div>
-  </Section>
+  </section>
 
   {/* Dolores */}
   <Section
     id="dolores"
-    heading="¿Compraste un inmueble para generar ingresos o para administrar problemas?"
-    intro="Los problemas que enfrentás cuando administrás solo."
     background="muted"
   >
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="max-w-3xl">
+      <h2 class:list={['font-display text-3xl font-semibold leading-tight sm:text-4xl text-primary-600', sectionHeading]}>
+        ¿Compraste un inmueble para generar ingresos o para administrar problemas?
+      </h2>
+      <p class="mt-4 text-lg text-neutral-600">
+        Muchos propietarios terminan ocupándose de tareas que les quitan tiempo, dinero y tranquilidad.
+      </p>
+    </div>
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
       {pains.map((pain) => <PainCard pain={pain} />)}
     </div>
-    <p class="mt-10 text-base italic text-neutral-600">
-      "La administración profesional cuesta menos que una mala administración."
-    </p>
   </Section>
 
   {/* Cómo funciona */}
   <Section
     id="como-funciona"
-    heading="¿Cómo funciona?"
-    headingClass={underlinedHeading}
-    intro="Un ciclo completo de administración, de la captación al cierre."
+    heading="COMO FUNCIONA?"
+    headingClass={sectionHeading}
+    intro="Nos ocupamos de todo el proceso, de principio a fin."
     background="default"
   >
     <ProcessCycle />
@@ -128,12 +149,19 @@ const underlinedHeading =
   {/* Servicios */}
   <Section
     id="servicios"
-    heading="Servicios"
-    headingClass={underlinedHeading}
-    intro="Cobertura completa: desde la captación hasta la entrega del inmueble."
     background="muted"
   >
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="max-w-3xl">
+      <h2 class:list={['font-display text-3xl font-semibold leading-tight sm:text-4xl text-primary-600', sectionHeading]}>
+        SERVICIOS
+      </h2>
+      <p class="mt-2 text-lg font-semibold text-primary-600">¿QUÉ INCLUYE NUESTRO SERVICIO?</p>
+      <p class="mt-4 text-lg text-neutral-600">
+        Administración integral para proteger tu patrimonio y maximizar tu rentabilidad.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {services.map((service) => (
         <ServiceCard
           title={service.title}
@@ -152,18 +180,18 @@ const underlinedHeading =
   {/* Diferenciación */}
   <Section
     id="diferenciacion"
-    heading="La diferencia entre alquilar y administrar"
-    intro="Inmobiliaria tradicional, administrador independiente y ANCORA, lado a lado."
+    heading="La Diferencia entre Alquilar y Administrar"
+    intro="Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual."
     background="default"
   >
     <ComparisonVisual />
   </Section>
 
-  {/* Preguntas frecuentes */}
+  {/* FAQ */}
   <Section
     id="preguntas"
-    heading="Preguntas frecuentes"
-    headingClass={underlinedHeading}
+    heading="PREGUNTAS FRECUENTES"
+    headingClass={sectionHeading}
     intro="Respuestas a las dudas más comunes de los propietarios."
     background="muted"
   >
@@ -171,35 +199,51 @@ const underlinedHeading =
   </Section>
 
   {/* CTA final */}
-  {/* TODO(PR 4): add building dusk background <img> overlay with gradient */}
-  <Section id="cta-final" background="inverse" padding="spacious">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="font-display text-3xl font-semibold text-white sm:text-4xl">
-        Tu patrimonio merece administración profesional.
-      </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-neutral-200">
-        Agendá una asesoría gratuita o escribinos por WhatsApp.
-      </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a
-          href={ctaAsesoria}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-primary-600 transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
-        >
-          <Icon name="ph:calendar-check" aria-hidden="true" />
-          Agendar asesoría gratuita
-        </a>
-        <a
-          href={ctaWhatsApp}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-md border border-neutral-300 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
-        >
-          <Icon name="ph:phone" aria-hidden="true" />
-          Escribinos por WhatsApp
-        </a>
+  <section
+    id="cta-final"
+    class="relative flex min-h-[480px] items-center scroll-mt-20 bg-primary-600 text-white"
+  >
+    {/* TODO(PR 4): replace with NanoBanana building dusk photo */}
+    <div class="absolute inset-0">
+      <img
+        src="https://picsum.photos/seed/ancora-building/1440/800"
+        alt=""
+        class="h-full w-full object-cover"
+        width="1440"
+        height="800"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-600/95 via-primary-600/80 to-primary-600/30"></div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl font-semibold text-white sm:text-4xl">
+          Tu patrimonio merece administración profesional.
+        </h2>
+        <p class="mt-4 max-w-xl text-lg text-neutral-200">
+          Nos encargamos de todo para que vos solo disfrutes los resultados.
+        </p>
+        <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+          <a
+            href={ctaAsesoria}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-primary-600 transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+          >
+            <Icon name="ph:calendar-check" aria-hidden="true" />
+            Agendar asesoría gratuita
+          </a>
+          <a
+            href={ctaWhatsApp}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-md border border-white px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+          >
+            <Icon name="ph:phone" aria-hidden="true" />
+            Escribinos por WhatsApp
+          </a>
+        </div>
       </div>
     </div>
-  </Section>
+  </section>
 </BaseLayout>

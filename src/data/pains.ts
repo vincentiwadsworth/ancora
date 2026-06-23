@@ -6,33 +6,28 @@ export interface Pain {
 
 export const pains: Pain[] = [
   {
-    icon: 'door-open',
+    icon: 'house',
     title: 'Vacancia',
-    description:
-      'Cada mes sin inquilino es renta que no recuperás y gastos que siguen corriendo.',
+    description: 'Cada mes vacío es dinero perdido.',
   },
   {
-    icon: 'money',
+    icon: 'calendar-check',
     title: 'Mora',
-    description:
-      'Los atrasos en el pago afectan tu flujo de caja y escalan en conflictos.',
+    description: 'Retrasos que afectan tu flujo de caja y generan conflictos.',
   },
   {
     icon: 'wrench',
     title: 'Mantenimiento',
-    description:
-      'Coordinar técnicos, supervisar reparaciones y responder urgencias consume tu tiempo.',
+    description: 'Coordinar técnicos y supervisar reparaciones.',
   },
   {
-    icon: 'scales',
+    icon: 'file-text',
     title: 'Riesgo legal',
-    description:
-      'Contratos mal redactados te exponen a desalojos prolongados y juicios.',
+    description: 'Contratos deficientes generan exposición y conflictos.',
   },
   {
-    icon: 'key',
+    icon: 'package',
     title: 'Entrega',
-    description:
-      'Garantías insuficientes, daños ocultos y conciliaciones al finalizar el contrato.',
+    description: 'Daños, garantías y conciliaciones al finalizar.',
   },
 ];

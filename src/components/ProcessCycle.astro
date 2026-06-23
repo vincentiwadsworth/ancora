@@ -1,0 +1,158 @@
+---
+// ProcessCycle.astro — REQ-1PH-002
+// Circular 7-step administration cycle around a center ANCORA logo.
+// Desktop (>=768px): SVG diagram. Mobile (<768px): linear ordered list
+// fallback so the 7 labels never overflow at 375px.
+
+const steps = [
+  { label: 'Captar', gold: true },
+  { label: 'Gestión contractual', gold: true },
+  { label: 'Cobranzas', gold: true },
+  { label: 'Comunicación', gold: false },
+  { label: 'Mantenimientos', gold: false },
+  { label: 'Reportar', gold: false },
+  { label: 'Gestionar fin', gold: false },
+];
+
+const CENTER = 200;
+const NODE_R = 140; // distance from center to node badges
+const BADGE_R = 28; // badge circle radius
+const LABEL_R = 176; // label distance from center (just outside badge)
+const SLICE = 360 / steps.length; // 51.4286 deg between nodes
+
+const GOLD = '#c69034'; // accent-500
+const NAVY = '#0f1e36'; // primary-600
+const RING = '#e2e8f0'; // neutral-200
+const SPOKE = '#f1f5f9'; // neutral-100
+const INK = '#0f1e36';
+const MUTED = '#64748b'; // neutral-500
+
+const nodes = steps.map((step, i) => {
+  const deg = -90 + i * SLICE; // start at top, clockwise
+  const rad = (deg * Math.PI) / 180;
+  return {
+    ...step,
+    n: i + 1,
+    x: CENTER + NODE_R * Math.cos(rad),
+    y: CENTER + NODE_R * Math.sin(rad),
+    lx: CENTER + LABEL_R * Math.cos(rad),
+    ly: CENTER + LABEL_R * Math.sin(rad),
+  };
+});
+---
+
+{/* Mobile: linear fallback — avoids SVG label overflow at 375px */}
+<ol class="mx-auto max-w-md space-y-3 md:hidden">
+  {nodes.map((node) => (
+    <li class="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-3">
+      <span
+        class:list={[
+          'flex h-9 w-9 flex-none items-center justify-center rounded-full text-sm font-semibold text-white',
+          node.gold ? 'bg-accent-500' : 'bg-primary-600',
+        ]}
+      >
+        {node.n}
+      </span>
+      <span class="text-sm font-semibold text-primary-600">{node.label}</span>
+    </li>
+  ))}
+</ol>
+
+{/* Desktop: circular SVG */}
+<div class="hidden px-8 md:block">
+  <svg
+    viewBox="0 0 400 400"
+    role="img"
+    aria-label="Ciclo de administración ANCORA con 7 etapas: Captar, Gestión contractual, Cobranzas, Comunicación, Mantenimientos, Reportar y Gestionar fin."
+    class="mx-auto w-full max-w-md"
+    style="overflow: visible;"
+  >
+    {/* connecting ring */}
+    <circle
+      cx={CENTER}
+      cy={CENTER}
+      r={NODE_R}
+      fill="none"
+      stroke={RING}
+      stroke-width="2"
+    />
+
+    {/* spokes from center to each node */}
+    {nodes.map((node) => (
+      <line
+        x1={CENTER}
+        y1={CENTER}
+        x2={node.x}
+        y2={node.y}
+        stroke={SPOKE}
+        stroke-width="2"
+      />
+    ))}
+
+    {/* center logo */}
+    <circle
+      cx={CENTER}
+      cy={CENTER}
+      r="46"
+      fill="#ffffff"
+      stroke={INK}
+      stroke-width="2"
+    />
+    <text
+      x={CENTER}
+      y={CENTER - 2}
+      text-anchor="middle"
+      font-family="Playfair Display, serif"
+      font-size="16"
+      font-weight="700"
+      letter-spacing="0.08em"
+      fill={INK}
+    >
+      ANCORA
+    </text>
+    <text
+      x={CENTER}
+      y={CENTER + 14}
+      text-anchor="middle"
+      font-family="Inter, sans-serif"
+      font-size="8"
+      fill={MUTED}
+    >
+      ciclo completo
+    </text>
+
+    {/* nodes: badge + number + label */}
+    {nodes.map((node) => (
+      <g>
+        <circle
+          cx={node.x}
+          cy={node.y}
+          r={BADGE_R}
+          fill={node.gold ? GOLD : NAVY}
+        />
+        <text
+          x={node.x}
+          y={node.y + 5}
+          text-anchor="middle"
+          font-family="Inter, sans-serif"
+          font-size="16"
+          font-weight="700"
+          fill="#ffffff"
+        >
+          {node.n}
+        </text>
+        <text
+          x={node.lx}
+          y={node.ly + 4}
+          text-anchor="middle"
+          font-family="Inter, sans-serif"
+          font-size="13"
+          font-weight="600"
+          fill={INK}
+        >
+          {node.label}
+        </text>
+      </g>
+    ))}
+  </svg>
+</div>

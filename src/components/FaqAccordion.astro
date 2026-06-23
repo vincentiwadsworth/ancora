@@ -1,0 +1,66 @@
+---
+// REQ-1PH-005 — 6-item accordion using native <details>/<summary>.
+// +/- markers via CSS ::after; single-open behaviour via vanilla JS.
+export interface QAPair {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: QAPair[];
+}
+
+const { items } = Astro.props;
+---
+
+<!-- TODO: verify copy with client -->
+<div class="mx-auto max-w-3xl divide-y divide-neutral-200">
+  {items.map((item) => (
+    <details class="py-4" data-faq-item>
+      <summary class="faq-summary flex cursor-pointer list-none items-center justify-between text-base font-semibold text-primary-600">
+        <span>{item.q}</span>
+      </summary>
+      <p class="mt-3 text-base text-neutral-600">{item.a}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-summary::after {
+    content: '+';
+    flex: none;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-accent-500);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-summary:hover::after {
+    color: var(--color-accent-600);
+  }
+
+  details[open] .faq-summary::after {
+    content: '\2212';
+  }
+</style>
+
+<script>
+  // Single-open accordion: opening one item closes the others.
+  const items = document.querySelectorAll<HTMLDetailsElement>(
+    'details[data-faq-item]',
+  );
+  items.forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        items.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+</script>

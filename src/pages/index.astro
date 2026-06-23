@@ -1,11 +1,16 @@
 ---
 import { Icon } from 'astro-icon/components';
+import ComparisonVisual from '../components/ComparisonVisual.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import MonthlyReport from '../components/MonthlyReport.astro';
 import PainCard from '../components/PainCard.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ProcessCycle from '../components/ProcessCycle.astro';
 import Section from '../components/Section.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import TrustStrip from '../components/TrustStrip.astro';
 import { site, whatsappLink } from '../config/site';
 import { pains } from '../data/pains';
-import { pricing } from '../data/pricing';
 import { services } from '../data/services';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -33,50 +38,31 @@ const jsonLd = {
   email: site.email,
 };
 
-// PR 3 will extract these inline placeholders into dedicated components:
-// TrustStrip, ProcessCycle, MonthlyReport, PricingCard, FaqAccordion, and the
-// ComparisonVisual rewrite. Copy below is intentionally simple/placeholder.
-const trustItems = [
-  { icon: 'shield-check', label: 'Menos vacancia / Más ingresos' },
-  { icon: 'scales', label: 'Menos riesgo legal / Más protección' },
-  { icon: 'clock', label: 'Menos tiempo invertido / Más tranquilidad' },
-];
-
-const processSteps = [
-  'Captar',
-  'Gestión contractual',
-  'Cobranzas',
-  'Comunicación',
-  'Mantenimientos',
-  'Reportar',
-  'Gestionar fin',
-];
-
-// TODO: replace placeholder answers with client-confirmed copy before PR 3.
+// TODO: verify copy with client — answers are concise placeholders.
 const faqItems = [
   {
     q: '¿Qué incluye la administración de ANCORA?',
-    a: 'TODO: confirmar con el cliente. Placeholder: captación y evaluación de inquilinos, contrato bajo escritura pública, cobranza activa, coordinación de mantenimientos y reporte mensual con liquidación.',
+    a: 'Captación y evaluación de inquilinos, contrato bajo escritura pública, cobranza activa, coordinación de mantenimientos y reporte mensual con liquidación.',
   },
   {
     q: '¿Cuánto cuesta el servicio?',
-    a: 'TODO: confirmar con el cliente. Placeholder: cobramos 7% del canon mensual. Sin alquiler cobrado, no hay fee de administración.',
+    a: 'Cobramos 7% del canon mensual. Sin alquiler cobrado, no hay fee de administración.',
   },
   {
     q: '¿Cómo eligen a los inquilinos?',
-    a: 'TODO: confirmar con el cliente. Placeholder: evaluamos documentación y antecedentes antes de recomendar un inquilino.',
+    a: 'Evaluamos documentación y antecedentes antes de recomendar un inquilino.',
   },
   {
     q: '¿Qué pasa si el inquilino no paga?',
-    a: 'TODO: confirmar con el cliente. Placeholder: gestionamos la cobranza desde el primer día de atraso, sin esperar a fin de mes.',
+    a: 'Gestionamos la cobranza desde el primer día de atraso, sin esperar a fin de mes.',
   },
   {
     q: '¿Cómo recibo mis ingresos?',
-    a: 'TODO: confirmar con el cliente. Placeholder: cada mes recibís un reporte con la liquidación detallada y la transferencia neta a tu cuenta.',
+    a: 'Cada mes recibís un reporte con la liquidación detallada y la transferencia neta a tu cuenta.',
   },
   {
     q: '¿Qué pasa cuando finaliza el contrato?',
-    a: 'TODO: confirmar con el cliente. Placeholder: hacemos la inspección de entrega y la conciliación final de la relación contractual.',
+    a: 'Hacemos la inspección de entrega y la conciliación final de la relación contractual.',
   },
 ];
 
@@ -109,15 +95,7 @@ const underlinedHeading =
           Solicitar asesoría gratuita
         </a>
       </div>
-      {/* TODO(PR 3): replace inline trust strip with TrustStrip.astro */}
-      <ul class="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
-        {trustItems.map((item) => (
-          <li class="flex items-center gap-3 text-sm text-neutral-700">
-            <Icon name={`ph:${item.icon}`} class="text-2xl text-accent-500" aria-hidden="true" />
-            <span>{item.label}</span>
-          </li>
-        ))}
-      </ul>
+      <TrustStrip />
     </div>
   </Section>
 
@@ -144,17 +122,7 @@ const underlinedHeading =
     intro="Un ciclo completo de administración, de la captación al cierre."
     background="default"
   >
-    {/* TODO(PR 3): replace linear list with ProcessCycle.astro (circular SVG, 7 nodes) */}
-    <ol class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {processSteps.map((step, index) => (
-        <li class="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-4">
-          <span class="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <span class="text-sm font-semibold text-primary-600">{step}</span>
-        </li>
-      ))}
-    </ol>
+    <ProcessCycle />
   </Section>
 
   {/* Servicios */}
@@ -176,41 +144,8 @@ const underlinedHeading =
     </div>
 
     <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-      {/* TODO(PR 3): replace with MonthlyReport.astro (border card + table + interior photo) */}
-      <div class="rounded-xl border border-neutral-200 bg-white p-6">
-        <h3 class="text-lg font-semibold text-primary-600">Reporte mensual</h3>
-        <p class="mt-1 text-sm text-neutral-500">Junio 2026 — ejemplo</p>
-        <dl class="mt-6 space-y-3 text-base">
-          <div class="flex items-baseline justify-between">
-            <dt class="text-neutral-600">Canon cobrado</dt>
-            <dd class="font-semibold text-primary-600">{pricing.example.rent}</dd>
-          </div>
-          <div class="flex items-baseline justify-between">
-            <dt class="text-neutral-600">Fee ANCORA ({pricing.feePercentage})</dt>
-            <dd class="font-semibold text-neutral-500">– {pricing.example.fee}</dd>
-          </div>
-          <div class="flex items-baseline justify-between border-t border-neutral-200 pt-3">
-            <dt class="font-semibold text-primary-600">Vos recibís</dt>
-            <dd class="text-xl font-bold text-primary-600">{pricing.example.net}</dd>
-          </div>
-        </dl>
-      </div>
-
-      {/* TODO(PR 3): replace with PricingCard.astro (tariff breakdown + CTA) */}
-      <div class="rounded-xl border border-accent-200 bg-accent-50 p-6">
-        <h3 class="text-lg font-semibold text-primary-600">Tarifa</h3>
-        <p class="mt-2 text-3xl font-bold text-primary-600">{pricing.feePercentage}</p>
-        <p class="mt-1 text-sm text-neutral-600">{pricing.rate}</p>
-        <p class="mt-4 text-sm italic text-neutral-500">{pricing.disclaimer}</p>
-        <a
-          href={ctaAsesoria}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
-        >
-          Calcular mi administración
-        </a>
-      </div>
+      <MonthlyReport />
+      <PricingCard />
     </div>
   </Section>
 
@@ -221,15 +156,7 @@ const underlinedHeading =
     intro="Inmobiliaria tradicional, administrador independiente y ANCORA, lado a lado."
     background="default"
   >
-    {/* TODO(PR 3): replace with ComparisonVisual.astro (3-tab pill selector + 9-row checklist) */}
-    <div class="rounded-lg border border-dashed border-neutral-300 bg-surface-muted p-8 text-center">
-      <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500">
-        Próximamente
-      </p>
-      <p class="mt-2 text-base text-neutral-600">
-        Comparativa de 3 columnas: Inmobiliaria tradicional · Administrador · ANCORA.
-      </p>
-    </div>
+    <ComparisonVisual />
   </Section>
 
   {/* Preguntas frecuentes */}
@@ -240,22 +167,7 @@ const underlinedHeading =
     intro="Respuestas a las dudas más comunes de los propietarios."
     background="muted"
   >
-    {/* TODO(PR 3): replace with FaqAccordion.astro (+/- CSS, single-open JS) */}
-    <div class="mx-auto max-w-3xl divide-y divide-neutral-200">
-      {faqItems.map((item) => (
-        <details class="group py-4">
-          <summary class="flex cursor-pointer list-none items-center justify-between text-base font-semibold text-primary-600">
-            {item.q}
-            <Icon
-              name="ph:caret-down"
-              class="text-xl text-neutral-400 transition-transform group-open:rotate-180"
-              aria-hidden="true"
-            />
-          </summary>
-          <p class="mt-3 text-base text-neutral-600">{item.a}</p>
-        </details>
-      ))}
-    </div>
+    <FaqAccordion items={faqItems} />
   </Section>
 
   {/* CTA final */}
@@ -291,9 +203,3 @@ const underlinedHeading =
     </div>
   </Section>
 </BaseLayout>
-
-<style>
-  summary::-webkit-details-marker {
-    display: none;
-  }
-</style>

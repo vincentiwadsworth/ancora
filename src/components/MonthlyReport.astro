@@ -1,0 +1,74 @@
+---
+import { Icon } from 'astro-icon/components';
+import { pricing } from '../data/pricing';
+
+// REQ-1PH-003 — interior-photo report card with a table + 4 icon labels.
+// Photo is a picsum placeholder (PR 4 swaps in the real asset).
+const reportMonth = 'Junio 2026';
+const photoSrc = 'https://picsum.photos/seed/ancora-report-interior/600/400';
+const photoFallback =
+  'https://picsum.photos/seed/ancora-report-fallback/600/400';
+
+const metrics = [
+  { icon: 'money', label: 'Canon cobrado' },
+  { icon: 'chart-bar', label: 'Liquidación' },
+  { icon: 'calendar-check', label: 'Mensual' },
+  { icon: 'check-circle', label: 'Transferido' },
+];
+---
+
+<figure class="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+  <img
+    src={photoSrc}
+    alt="Interior del inmueble administrado por ANCORA"
+    width="600"
+    height="400"
+    loading="lazy"
+    class="aspect-[3/2] w-full object-cover"
+    onerror={`this.onerror=null;this.src='${photoFallback}';`}
+  />
+  <figcaption class="p-6">
+    <div class="flex items-baseline justify-between">
+      <h3 class="text-lg font-semibold text-primary-600">Reporte mensual</h3>
+      <span class="text-sm text-neutral-500">{reportMonth}</span>
+    </div>
+
+    <table class="mt-5 w-full text-base">
+      <tbody class="divide-y divide-neutral-200">
+        <tr>
+          <th scope="row" class="py-2.5 text-left font-normal text-neutral-600">
+            Canon cobrado
+          </th>
+          <td class="py-2.5 text-right font-semibold text-primary-600">
+            {pricing.example.rent}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="py-2.5 text-left font-normal text-neutral-600">
+            Fee ANCORA ({pricing.feePercentage})
+          </th>
+          <td class="py-2.5 text-right font-semibold text-neutral-500">
+            – {pricing.example.fee}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="py-2.5 text-left font-semibold text-primary-600">
+            Vos recibís
+          </th>
+          <td class="py-2.5 text-right text-xl font-bold text-primary-600">
+            {pricing.example.net}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {metrics.map((metric) => (
+        <li class="flex items-center gap-2 text-xs text-neutral-600">
+          <Icon name={`ph:${metric.icon}`} class="size-5 text-accent-500" aria-hidden="true" />
+          <span>{metric.label}</span>
+        </li>
+      ))}
+    </ul>
+  </figcaption>
+</figure>

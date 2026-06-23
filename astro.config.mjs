@@ -12,35 +12,13 @@ export default defineConfig({
     // (workaround: a marker integration in case Astro's default behavior changes)
     icon({
       include: {
-        // Retained until PR 3 migrates all components to Phosphor
-        'material-symbols': [
-          'format-quote',
-          'photo-camera',
-          'thumb-up',
-          'work',
-          'check-circle',
-          'shield',
-          'mail',
-          'call',
-          'location-on',
-          'map',
-          'menu',
-          'close',
-          'open-in-new',
-          'send',
-          'arrow-forward',
-          'chat',
-          'door-front',
-          'payments',
-          'handyman',
-          'gavel',
-          'assignment-return',
-        ],
-        // Phosphor icons — new icon set for the one-pager
+        // Phosphor icons — sole icon set for the one-pager (material-symbols
+        // fully removed in PR 3 once Footer + ComparisonVisual migrated).
         ph: [
           'arrow-right',
           'calendar-blank',
           'calendar-check',
+          'calculator',
           'camera',
           'caret-down',
           'chart-bar',
@@ -53,6 +31,7 @@ export default defineConfig({
           'envelope-simple',
           'facebook-logo',
           'flag-checkered',
+          'gavel',
           'gear',
           'handshake',
           'house',

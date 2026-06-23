@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// REQ-1PH-001 — 3-item trust strip below the hero.
+// Self-contained (no props): the three pillars are fixed business claims.
+const items = [
+  {
+    icon: 'shield-check',
+    label: 'Menos vacancia / Más ingresos',
+  },
+  {
+    icon: 'gavel',
+    label: 'Menos riesgo legal / Más protección',
+  },
+  {
+    icon: 'clock',
+    label: 'Menos tiempo invertido / Más tranquilidad',
+  },
+];
+---
+
+<ul class="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
+  {items.map((item) => (
+    <li class="flex items-center gap-3 text-sm text-neutral-700">
+      <Icon name={`ph:${item.icon}`} class="size-7 text-accent-500" aria-hidden="true" />
+      <span>{item.label}</span>
+    </li>
+  ))}
+</ul>

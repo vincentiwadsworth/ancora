@@ -12,16 +12,22 @@ const navItems = [
 ];
 
 // TODO: confirm real phone number with client — current value is a placeholder.
-// NOTE: social icons stay on material-symbols until PR 3 migrates all components
-// to Phosphor ( REQ-SITE-FDN-005 lists Instagram/Facebook/LinkedIn only ).
 const socialItems = [
   {
     href: site.socialHandles.instagram,
     label: 'Instagram',
-    icon: 'photo-camera',
+    icon: 'instagram-logo',
   },
-  { href: site.socialHandles.facebook, label: 'Facebook', icon: 'thumb-up' },
-  { href: site.socialHandles.linkedin, label: 'LinkedIn', icon: 'work' },
+  {
+    href: site.socialHandles.facebook,
+    label: 'Facebook',
+    icon: 'facebook-logo',
+  },
+  {
+    href: site.socialHandles.linkedin,
+    label: 'LinkedIn',
+    icon: 'linkedin-logo',
+  },
 ];
 ---
 
@@ -81,7 +87,7 @@ const socialItems = [
                 aria-label={item.label}
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-400 text-neutral-100 transition-colors hover:bg-white hover:text-primary-600"
               >
-                <Icon name={`material-symbols:${item.icon}`} aria-hidden="true" />
+                <Icon name={`ph:${item.icon}`} aria-hidden="true" />
               </a>
             </li>
           ))}

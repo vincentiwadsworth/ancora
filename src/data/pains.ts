@@ -1,33 +1,38 @@
 export interface Pain {
-  icon: string;
+  icon: string; // Phosphor icon name
   title: string;
   description: string;
 }
 
 export const pains: Pain[] = [
   {
-    icon: 'door-front',
+    icon: 'door-open',
     title: 'Vacancia',
-    description: 'Cada mes vacío representa ingresos perdidos.',
+    description:
+      'Cada mes sin inquilino es renta que no recuperás y gastos que siguen corriendo.',
   },
   {
-    icon: 'payments',
+    icon: 'money',
     title: 'Mora',
-    description: 'Los atrasos afectan el flujo de caja y generan conflictos.',
+    description:
+      'Los atrasos en el pago afectan tu flujo de caja y escalan en conflictos.',
   },
   {
-    icon: 'handyman',
+    icon: 'wrench',
     title: 'Mantenimiento',
-    description: 'Coordinar técnicos y supervisar reparaciones consume tiempo.',
+    description:
+      'Coordinar técnicos, supervisar reparaciones y responder urgencias consume tu tiempo.',
   },
   {
-    icon: 'gavel',
+    icon: 'scales',
     title: 'Riesgo legal',
-    description: 'Contratos deficientes generan exposición y conflictos.',
+    description:
+      'Contratos mal redactados te exponen a desalojos prolongados y juicios.',
   },
   {
-    icon: 'assignment-return',
+    icon: 'key',
     title: 'Entrega',
-    description: 'Garantías, daños y conciliaciones al finalizar.',
+    description:
+      'Garantías insuficientes, daños ocultos y conciliaciones al finalizar el contrato.',
   },
 ];

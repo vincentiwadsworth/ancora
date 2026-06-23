@@ -13,7 +13,7 @@ const { intent, variant = 'primary', label, class: className } = Astro.props;
 const defaultLabels: Record<CtaIntent, string> = {
   evaluate: 'Evaluar mi propiedad',
   general: 'Más información',
-  process: 'Conocer el proceso',
+  solicitarAsesoria: 'Solicitar asesoría',
 };
 
 const finalLabel = label ?? defaultLabels[intent];

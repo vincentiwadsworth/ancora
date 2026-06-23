@@ -1,8 +1,9 @@
 export const site = {
   brandName: 'ANCORA',
   tagline: 'Administramos. Vos descansás.',
-  phone: '+591 00000000',
-  whatsapp: '59100000000',
+  // TODO: replace with real phone number once client confirms
+  phone: '+591 700 00000',
+  whatsapp: '59170000000',
   email: 'contacto@ancora.com.bo',
   address: 'Santa Cruz de la Sierra, Bolivia',
   socialHandles: {
@@ -17,8 +18,8 @@ export const site = {
 export const ctaMessages = {
   evaluate: 'Hola Ancora, quiero evaluar mi propiedad para administración.',
   general: 'Hola Ancora, quiero más información sobre sus servicios.',
-  process:
-    'Hola Ancora, quiero saber más sobre el proceso de selección de inquilinos.',
+  solicitarAsesoria:
+    'Hola Ancora, quiero solicitar una asesoría gratuita para mi propiedad.',
 } as const;
 
 export type CtaIntent = keyof typeof ctaMessages;

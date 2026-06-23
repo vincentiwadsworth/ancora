@@ -41,33 +41,13 @@
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* plus-jakarta-sans-latin-500-normal */
+/* playfair-display-latin-700-normal */
 @font-face {
-  font-family: "Plus Jakarta Sans";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url(../fonts/plus-jakarta-sans-latin-500-normal.woff2) format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* plus-jakarta-sans-latin-600-normal */
-@font-face {
-  font-family: "Plus Jakarta Sans";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 600;
-  src: url(../fonts/plus-jakarta-sans-latin-600-normal.woff2) format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* plus-jakarta-sans-latin-700-normal */
-@font-face {
-  font-family: "Plus Jakarta Sans";
+  font-family: "Playfair Display";
   font-style: normal;
   font-display: swap;
   font-weight: 700;
-  src: url(../fonts/plus-jakarta-sans-latin-700-normal.woff2) format("woff2");
+  src: url(../fonts/playfair-display-latin-700-normal.woff2) format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -118,7 +98,7 @@
 
   /* Typography */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Plus Jakarta Sans", "Inter", system-ui, -apple-system,
+  --font-display: "Playfair Display", "Inter", system-ui, -apple-system,
     sans-serif;
 
   /* Spacing */

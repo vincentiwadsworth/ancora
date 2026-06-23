@@ -1,35 +1,56 @@
 export interface Service {
   title: string;
   description: string;
+  icon: string; // Phosphor icon name, e.g. "user-check"
 }
 
 export const services: Service[] = [
   {
     title: 'Captación y evaluación',
-    description: 'Captación y evaluación documentada de inquilinos.',
+    description:
+      'Captamos y evaluamos documentadamente a cada inquilino antes de recomendarlo.',
+    icon: 'user-check',
   },
   {
-    title: 'Contratos notaría',
-    description: 'Contratos bajo escritura pública ante Notaría.',
+    title: 'Gestión contractual',
+    description:
+      'Contratos bajo escritura pública ante Notaría, con cláusulas que protegen al propietario.',
+    icon: 'scroll',
   },
   {
     title: 'Cobranza activa',
-    description: 'Cobranza activa desde el día 1 de atraso.',
+    description:
+      'Cobranza gestada desde el día 1 de atraso, sin esperar a fin de mes.',
+    icon: 'money',
   },
   {
-    title: 'Mantenimiento',
-    description: 'Coordinación de mantenimientos con aprobación previa.',
+    title: 'Comunicación con propietarios',
+    description:
+      'Comunicación permanente y transparente sobre el estado de tu propiedad.',
+    icon: 'chats',
+  },
+  {
+    title: 'Mantenimientos',
+    description:
+      'Coordinación de técnicos y reparaciones con aprobación previa del propietario.',
+    icon: 'wrench',
   },
   {
     title: 'Inspección y entrega',
-    description: 'Inspección, registro fotográfico y control de entrega.',
+    description:
+      'Inspección inicial con registro fotográfico y control de entrega al finalizar.',
+    icon: 'camera',
   },
   {
-    title: 'Reportes',
-    description: 'Reportes periódicos con liquidación detallada.',
+    title: 'Reportes mensuales',
+    description:
+      'Reportes con liquidación detallada de ingresos, egresos y transferencia al propietario.',
+    icon: 'chart-bar',
   },
   {
-    title: 'Soporte en conflictos',
-    description: 'Soporte en gestión de conflictos.',
+    title: 'Gestión de conflictos',
+    description:
+      'Soporte legal en gestión de conflictos, morosidad y conciliaciones.',
+    icon: 'shield-check',
   },
 ];

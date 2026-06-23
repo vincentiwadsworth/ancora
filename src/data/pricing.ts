@@ -1,5 +1,6 @@
 export const pricing = {
-  rate: '7% del alquiler efectivamente cobrado',
+  rate: '7% del canon mensual',
+  feePercentage: '7%',
   example: {
     rent: 'Bs. 3.000',
     fee: 'Bs. 210',

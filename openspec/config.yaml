@@ -1,11 +1,19 @@
 # openspec/config.yaml
+# Updated by sdd-init — 2026-06-23
 schema: spec-driven
 
 context: |
-  Tech stack: none — greenfield static site (first project: ancora-web, corporate institutional)
-  Architecture: TBD at sdd-design time
-  Testing: no test runner; visual/a11y checks via seo-audit + web-design-guidelines + accessibility skills
-  Style: corporate institutional site for rental real-estate asset management firm (Bolivia)
+  Tech stack: Astro 6.2.1 + Tailwind CSS v4.2.4 (PostCSS) + TypeScript (strict) + Biome 1.9.4
+  Architecture: Static site — corporate institutional for rental real-estate asset management (Bolivia)
+    Hosted on GitHub Pages at /ancora base path
+    Icon set: Phosphor (via astro-icon + @iconify-json/ph)
+    Font: Inter (via @fontsource/inter)
+    Integrations: @astrojs/sitemap, astro-icon
+  Testing: Playwright 1.49.0 — E2E only (Chromium, tests/e2e/). Requires `npm run preview -- --port 4321` in parallel.
+  Lint/Format: Biome 1.9.4 — single quotes, 2-space indent, organized imports
+  Type checking: @astrojs/check 0.9.9 + tsconfig strict via astro/tsconfigs/strict
+  Node: >=22.12.0
+  PM: pnpm (pnpm-lock.yaml, pnpm-workspace.yaml) + npm (package-lock.json)
 
 rules:
   proposal:
@@ -21,11 +29,12 @@ rules:
     - Keep tasks completable in one session
   apply:
     - Follow existing code patterns
-    tdd: false
-    test_command: ""
+    tdd: true
+    test_command: "npm run test"
+    note: "Tests are E2E-only via Playwright. Run `npm run preview -- --port 4321` in parallel before `npm run test`. TDD cycle means: run tests, implement, run tests again."
   verify:
-    test_command: ""
-    build_command: ""
+    test_command: "npm run test"
+    build_command: "npm run build"
     coverage_threshold: 0
   archive:
     - Warn before merging destructive deltas

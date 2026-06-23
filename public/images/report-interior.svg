@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="report-grad" x1="0" y1="0" x2="600" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c4b89a" />
+      <stop offset="30%" stop-color="#d4c8a8" />
+      <stop offset="60%" stop-color="#e8dcc8" />
+      <stop offset="100%" stop-color="#f0e8d8" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#report-grad)" />
+</svg>

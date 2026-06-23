@@ -2,9 +2,8 @@
 import { Icon } from 'astro-icon/components';
 
 // Monthly report example card matching Slide 3 reference.
-const photoSrc = 'https://picsum.photos/seed/ancora-report-interior/600/400';
-const photoFallback =
-  'https://picsum.photos/seed/ancora-report-fallback/600/400';
+const photoSrc = `${import.meta.env.BASE_URL}/images/report-interior.webp`;
+const photoFallback = `${import.meta.env.BASE_URL}/images/report-interior.svg`;
 
 const labels = [
   { icon: 'receipt', text: 'Comprobantes adjuntos' },

@@ -31,12 +31,24 @@ const columns = [
 ---
 
 <div class="overflow-x-auto">
-  <table class="w-full min-w-[600px] border-collapse text-sm">
+  <table class="table-fixed w-full min-w-[600px] border-collapse text-sm">
+    <colgroup>
+      <col class="w-[28%]" />
+      <col class="w-[24%]" />
+      <col class="w-[24%]" />
+      <col class="w-[24%]" />
+    </colgroup>
     <thead>
       <tr>
         <th scope="col" class="border-b border-neutral-200 py-3 text-left font-normal text-neutral-500"></th>
-        {columns.map((col) => (
-          <th scope="col" class="border-b border-neutral-200 px-3 py-3 text-center text-base font-semibold text-primary-600">
+        {columns.map((col, ci) => (
+          <th
+            scope="col"
+            class:list={[
+              'border-b border-neutral-200 px-2 py-3 text-center text-sm font-semibold leading-snug text-primary-600',
+              ci === columns.length - 1 && 'bg-accent-50 border-x border-accent-200',
+            ]}
+          >
             {col.label}
           </th>
         ))}
@@ -45,9 +57,14 @@ const columns = [
     <tbody class="divide-y divide-neutral-100">
       {rows.map((row, ri) => (
         <tr>
-          <th scope="row" class="py-3 text-left font-normal text-neutral-700">{row}</th>
-          {columns.map((col) => (
-            <td class="px-3 py-3 text-center">
+          <th scope="row" class="py-3 pr-3 text-left font-normal text-neutral-700">{row}</th>
+          {columns.map((col, ci) => (
+            <td
+              class:list={[
+                'px-3 py-3 text-center',
+                ci === columns.length - 1 && 'bg-accent-50 border-x border-accent-200',
+              ]}
+            >
               {col.checks[ri] ? (
                 <Icon name="ph:check-circle" class="mx-auto size-5 text-accent-500" aria-label="Incluido" />
               ) : (

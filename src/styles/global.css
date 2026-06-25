@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-/* Self-hosted font files — latin subset only, no runtime Google/CDN fetch */
-/* inter-latin-400-normal */
+/* ── Self-hosted fonts (latin only, no runtime CDN) ── */
+
+/* Inter — body text */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -11,7 +12,6 @@
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* inter-latin-500-normal */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -21,7 +21,6 @@
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* inter-latin-600-normal */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -31,7 +30,6 @@
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* inter-latin-700-normal */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -41,65 +39,111 @@
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* playfair-display-latin-700-normal */
+
+/* Cormorant Garamond — display / headings (500, 600, 700) */
 @font-face {
-  font-family: "Playfair Display";
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(../fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(../fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
   font-style: normal;
   font-display: swap;
   font-weight: 700;
-  src: url(../fonts/playfair-display-latin-700-normal.woff2) format("woff2");
+  src: url(../fonts/cormorant-garamond-latin-700-normal.woff2) format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* ── Design tokens ── */
 @theme {
-  /* Primary scale — anchored on #0f1e36 */
-  --color-primary-50: #eef2f8;
-  --color-primary-100: #d3dceb;
-  --color-primary-200: #a6b9d6;
-  --color-primary-300: #7a96c2;
-  --color-primary-400: #4d73ad;
-  --color-primary-500: #214f99;
-  --color-primary-600: #0f1e36;
-  --color-primary-700: #0c1829;
-  --color-primary-800: #09111d;
-  --color-primary-900: #060b14;
-  --color-primary-950: #03060a;
+  /* Primary (azul profundo) — anchored on #0E1B24 */
+  --color-primary-50: #e8eaec;
+  --color-primary-100: #c5c9cc;
+  --color-primary-200: #9ba0a6;
+  --color-primary-300: #717880;
+  --color-primary-400: #47505b;
+  --color-primary-500: #2a3543;
+  --color-primary-600: #0e1b24;
+  --color-primary-700: #0b151c;
+  --color-primary-800: #080f14;
+  --color-primary-900: #050a0d;
+  --color-primary-950: #030507;
 
-  /* Neutral (slate) */
-  --color-neutral-50: #f8fafc;
-  --color-neutral-100: #f1f5f9;
-  --color-neutral-200: #e2e8f0;
-  --color-neutral-300: #cbd5e1;
-  --color-neutral-400: #94a3b8;
-  --color-neutral-500: #64748b;
-  --color-neutral-600: #475569;
-  --color-neutral-700: #334155;
-  --color-neutral-800: #1e293b;
-  --color-neutral-900: #0f172a;
+  /* Secondary (azul secundario) */
+  --color-secondary-50: #eef1f3;
+  --color-secondary-100: #d4dce0;
+  --color-secondary-200: #a9b9c1;
+  --color-secondary-300: #7e96a2;
+  --color-secondary-400: #537383;
+  --color-secondary-500: #3b5a6a;
+  --color-secondary-600: #243747;
+  --color-secondary-700: #1c2b38;
+  --color-secondary-800: #141f29;
+  --color-secondary-900: #0c141a;
+  --color-secondary-950: #060a0d;
 
-  /* Surface (off-whites) */
-  --color-surface: #fafaf7;
-  --color-surface-muted: #f5f5f0;
-  --color-surface-inverse: #0f1e36;
+  /* Neutral — gray scale (neutral-500 = #6B7280 = gris texto spec) */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
 
-  /* Accent (warm gold) */
-  --color-accent-50: #faf5eb;
-  --color-accent-100: #f2e5c9;
-  --color-accent-200: #e6ce98;
-  --color-accent-300: #d9b667;
-  --color-accent-400: #cca03f;
-  --color-accent-500: #c69034;
-  --color-accent-600: #8a5d0b;
-  --color-accent-700: #7a5516;
-  --color-accent-800: #593e0e;
-  --color-accent-900: #392707;
-  --color-accent-950: #1e1404;
+  /* Surface (fondos) — #F5F4F2 base */
+  --color-surface: #f5f4f2;
+  --color-surface-muted: #efeeeb;
+  --color-surface-inverse: #0e1b24;
+  --color-surface-secondary: #243747;
+
+  /* Accent (dorado) — anchored on #C7A16A */
+  --color-accent-50: #faf6ef;
+  --color-accent-100: #f2e9d7;
+  --color-accent-200: #e5d3af;
+  --color-accent-300: #d8bd88;
+  --color-accent-400: #cba760;
+  --color-accent-500: #c7a16a;
+  --color-accent-600: #a9824d;
+  --color-accent-700: #8a663a;
+  --color-accent-800: #6b4e28;
+  --color-accent-900: #4d3619;
+  --color-accent-950: #2e1d0b;
+
+  /* Success (verde reportes) */
+  --color-success-50: #f0f7f2;
+  --color-success-100: #d9ecdf;
+  --color-success-200: #b3d9bf;
+  --color-success-300: #8dc69f;
+  --color-success-400: #67b37f;
+  --color-success-500: #6daa7d;
+  --color-success-600: #558b62;
+  --color-success-700: #3e6c48;
+  --color-success-800: #264d2e;
+  --color-success-900: #0f2e14;
+  --color-success-950: #071708;
 
   /* Typography */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Playfair Display", "Inter", system-ui, -apple-system,
-    sans-serif;
+  --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
 
   /* Spacing */
   --spacing-section-y: 5rem;
@@ -113,13 +157,29 @@
   --radius-full: 9999px;
 }
 
-/* Responsive section spacing — tighter on mobile */
+/* Responsive section spacing */
 @media (max-width: 767px) {
   :root {
     --spacing-section-y-sm: 1.5rem;
     --spacing-section-y: 2.5rem;
     --spacing-section-y-lg: 3rem;
   }
+}
+
+/* ── Overlay gradient for hero & CTA sections ──
+   Uses color-mix() so it tracks --color-primary-600 automatically. */
+.overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--color-primary-600) 0%,
+    color-mix(in srgb, var(--color-primary-600) 93%, transparent) 20%,
+    color-mix(in srgb, var(--color-primary-600) 70%, transparent) 40%,
+    color-mix(in srgb, var(--color-primary-600) 40%, transparent) 60%,
+    color-mix(in srgb, var(--color-primary-600) 15%, transparent) 80%,
+    transparent 100%
+  );
 }
 
 @layer base {

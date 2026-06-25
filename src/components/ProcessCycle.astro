@@ -2,6 +2,7 @@
 // ProcessCycle.astro
 // Circular 7-step administration cycle matching Slide 2 reference.
 // Desktop: SVG diagram. Mobile: linear ordered list fallback.
+// SVG colors use CSS custom properties — they track @theme tokens automatically.
 
 const steps = [
   { label: 'Captar y filtrar clientes', gold: true },
@@ -18,13 +19,6 @@ const NODE_R = 124;
 const BADGE_R = 26;
 const LABEL_R = 168;
 const SLICE = 360 / steps.length;
-
-const GOLD = '#c69034';
-const NAVY = '#0f1e36';
-const RING = '#e2e8f0';
-const SPOKE = '#f1f5f9';
-const INK = '#0f1e36';
-const MUTED = '#64748b';
 
 const nodes = steps.map((step, i) => {
   const deg = -90 + i * SLICE;
@@ -57,8 +51,8 @@ const nodes = steps.map((step, i) => {
   ))}
 </ol>
 
-{/* Desktop circular SVG */}
-<div class="hidden px-4 md:block">
+{/* Desktop circular SVG — colors via CSS variables, not hardcoded hex */}
+<div class="hidden px-4 md:block cycle-ring cycle-spoke cycle-ink cycle-muted cycle-gold cycle-navy cycle-white cycle-sans cycle-display">
   <svg
     viewBox="0 0 400 400"
     role="img"
@@ -66,22 +60,22 @@ const nodes = steps.map((step, i) => {
     class="mx-auto w-full max-w-lg"
     style="overflow: visible;"
   >
-    <circle cx={CENTER} cy={CENTER} r={NODE_R} fill="none" stroke={RING} stroke-width="2" />
+    <circle cx={CENTER} cy={CENTER} r={NODE_R} fill="none" stroke="var(--cycle-ring)" stroke-width="2" />
 
     {nodes.map((node) => (
-      <line x1={CENTER} y1={CENTER} x2={node.x} y2={node.y} stroke={SPOKE} stroke-width="2" />
+      <line x1={CENTER} y1={CENTER} x2={node.x} y2={node.y} stroke="var(--cycle-spoke)" stroke-width="2" />
     ))}
 
-    <circle cx={CENTER} cy={CENTER} r="52" fill="#ffffff" stroke={INK} stroke-width="2" />
+    <circle cx={CENTER} cy={CENTER} r="52" fill="var(--cycle-white)" stroke="var(--cycle-ink)" stroke-width="2" />
     <text
       x={CENTER}
       y={CENTER - 4}
       text-anchor="middle"
-      font-family="Playfair Display, serif"
+      font-family="var(--cycle-display)"
       font-size="18"
       font-weight="700"
       letter-spacing="0.06em"
-      fill={INK}
+      fill="var(--cycle-ink)"
     >
       ANCORA
     </text>
@@ -89,24 +83,24 @@ const nodes = steps.map((step, i) => {
       x={CENTER}
       y={CENTER + 16}
       text-anchor="middle"
-      font-family="Inter, sans-serif"
+      font-family="var(--cycle-sans)"
       font-size="8"
-      fill={MUTED}
+      fill="var(--cycle-muted)"
     >
       Administramos. Vos descansás.
     </text>
 
     {nodes.map((node) => (
       <g>
-        <circle cx={node.x} cy={node.y} r={BADGE_R} fill={node.gold ? GOLD : NAVY} />
+        <circle cx={node.x} cy={node.y} r={BADGE_R} fill={node.gold ? 'var(--cycle-gold)' : 'var(--cycle-navy)'} />
         <text
           x={node.x}
           y={node.y + 5}
           text-anchor="middle"
-          font-family="Inter, sans-serif"
+          font-family="var(--cycle-sans)"
           font-size="16"
           font-weight="700"
-          fill="#ffffff"
+          fill="var(--cycle-white)"
         >
           {node.n}
         </text>
@@ -114,10 +108,10 @@ const nodes = steps.map((step, i) => {
           x={node.lx}
           y={node.ly + 4}
           text-anchor="middle"
-          font-family="Inter, sans-serif"
+          font-family="var(--cycle-sans)"
           font-size="12"
           font-weight="600"
-          fill={INK}
+          fill="var(--cycle-ink)"
         >
           {node.label}
         </text>
@@ -125,3 +119,15 @@ const nodes = steps.map((step, i) => {
     ))}
   </svg>
 </div>
+
+<style>
+  .cycle-ring { --cycle-ring: var(--color-neutral-200); }
+  .cycle-spoke { --cycle-spoke: var(--color-neutral-100); }
+  .cycle-ink { --cycle-ink: var(--color-primary-600); }
+  .cycle-muted { --cycle-muted: var(--color-neutral-500); }
+  .cycle-gold { --cycle-gold: var(--color-accent-500); }
+  .cycle-navy { --cycle-navy: var(--color-primary-600); }
+  .cycle-white { --cycle-white: #ffffff; }
+  .cycle-sans { --cycle-sans: "Inter", system-ui, -apple-system, sans-serif; }
+  .cycle-display { --cycle-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif; }
+</style>

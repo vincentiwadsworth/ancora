@@ -18,11 +18,11 @@ const {
     viewBox="0 0 64 64"
     role="img"
     aria-label={ariaLabel}
-    class={className}
+    class={`logo-cross logo-font ${className ?? ''}`}
     fill="none"
   >
     <rect width="64" height="64" rx="8" fill="currentColor" />
-    <path d="M16 16 L48 48 M48 16 L16 48" stroke="#fafaf7" stroke-width="4" stroke-linecap="round" />
+    <path d="M16 16 L48 48 M48 16 L16 48" stroke="var(--logo-cross)" stroke-width="4" stroke-linecap="round" />
   </svg>
 ) : (
   <svg
@@ -30,15 +30,15 @@ const {
     viewBox="0 0 220 48"
     role="img"
     aria-label={ariaLabel}
-    class={className}
+    class={`logo-cross logo-font ${className ?? ''}`}
     fill="none"
   >
     <rect x="0" y="0" width="48" height="48" rx="6" fill="currentColor" />
-    <path d="M12 12 L36 36 M36 12 L12 36" stroke="#fafaf7" stroke-width="3" stroke-linecap="round" />
+    <path d="M12 12 L36 36 M36 12 L12 36" stroke="var(--logo-cross)" stroke-width="3" stroke-linecap="round" />
     <text
       x="60"
       y="32"
-      font-family="system-ui, -apple-system, sans-serif"
+      font-family="var(--logo-font)"
       font-size="24"
       font-weight="700"
       letter-spacing="0.08em"
@@ -48,3 +48,8 @@ const {
     </text>
   </svg>
 )}
+
+<style>
+  .logo-cross { --logo-cross: #f5f4f2; }
+  .logo-font { --logo-font: "Inter", system-ui, -apple-system, sans-serif; }
+</style>

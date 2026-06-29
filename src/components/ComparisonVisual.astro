@@ -46,7 +46,7 @@ const columns = [
             scope="col"
             class:list={[
               'border-b border-neutral-200 px-2 py-3 text-center text-sm font-semibold leading-snug text-primary-600',
-              ci === columns.length - 1 && 'bg-accent-50 border-x border-accent-200',
+              ci === columns.length - 1 && 'bg-primary-100 border-r border-primary-200 border-l-2 border-l-primary-400',
             ]}
           >
             {col.label}
@@ -62,11 +62,11 @@ const columns = [
             <td
               class:list={[
                 'px-3 py-3 text-center',
-                ci === columns.length - 1 && 'bg-accent-50 border-x border-accent-200',
+                ci === columns.length - 1 && 'bg-primary-50 border-r border-primary-200 border-l-2 border-l-primary-400',
               ]}
             >
               {col.checks[ri] ? (
-                <Icon name="ph:check-circle" class="mx-auto size-5 text-accent-500" aria-label="Incluido" />
+                <Icon name="ph:check-circle" class="mx-auto size-5 text-accent-700" aria-label="Incluido" />
               ) : (
                 <span class="sr-only">No incluido</span>
               )}

@@ -5,13 +5,13 @@
 // SVG colors use CSS custom properties — they track @theme tokens automatically.
 
 const steps = [
-  { label: 'Captar y filtrar clientes', gold: true },
-  { label: 'Gestión contractual', gold: true },
-  { label: 'Comunicación con inquilinos', gold: false },
-  { label: 'Cobranzas', gold: true },
-  { label: 'Mantenimientos y reparaciones', gold: false },
-  { label: 'Reportar resultados', gold: false },
-  { label: 'Gestionar fin del contrato', gold: false },
+  { label: 'Captar y filtrar clientes' },
+  { label: 'Gestión contractual' },
+  { label: 'Comunicación con inquilinos' },
+  { label: 'Cobranzas' },
+  { label: 'Mantenimientos y reparaciones' },
+  { label: 'Reportar resultados' },
+  { label: 'Gestionar fin del contrato' },
 ];
 
 const CENTER = 200;
@@ -39,10 +39,7 @@ const nodes = steps.map((step, i) => {
   {nodes.map((node) => (
     <li class="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-3">
       <span
-        class:list={[
-          'flex h-9 w-9 flex-none items-center justify-center rounded-full text-sm font-semibold text-white',
-          node.gold ? 'bg-accent-500' : 'bg-primary-600',
-        ]}
+        class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent-500 text-sm font-semibold text-white"
       >
         {node.n}
       </span>
@@ -52,7 +49,7 @@ const nodes = steps.map((step, i) => {
 </ol>
 
 {/* Desktop circular SVG — colors via CSS variables, not hardcoded hex */}
-<div class="hidden px-4 md:block cycle-ring cycle-spoke cycle-ink cycle-muted cycle-gold cycle-navy cycle-white cycle-sans cycle-display">
+<div class="hidden px-4 md:block cycle-ring cycle-spoke cycle-ink cycle-muted cycle-accent cycle-white cycle-sans cycle-display">
   <svg
     viewBox="0 0 400 400"
     role="img"
@@ -66,13 +63,14 @@ const nodes = steps.map((step, i) => {
       <line x1={CENTER} y1={CENTER} x2={node.x} y2={node.y} stroke="var(--cycle-spoke)" stroke-width="2" />
     ))}
 
-    <circle cx={CENTER} cy={CENTER} r="52" fill="var(--cycle-white)" stroke="var(--cycle-ink)" stroke-width="2" />
+    <circle cx={CENTER} cy={CENTER} r="60" fill="var(--cycle-white)" stroke="var(--cycle-ink)" stroke-width="2" />
     <text
       x={CENTER}
-      y={CENTER - 4}
+      y={CENTER - 6}
       text-anchor="middle"
+      dominant-baseline="central"
       font-family="var(--cycle-display)"
-      font-size="18"
+      font-size="24"
       font-weight="700"
       letter-spacing="0.06em"
       fill="var(--cycle-ink)"
@@ -81,10 +79,11 @@ const nodes = steps.map((step, i) => {
     </text>
     <text
       x={CENTER}
-      y={CENTER + 16}
+      y={CENTER + 18}
       text-anchor="middle"
+      dominant-baseline="central"
       font-family="var(--cycle-sans)"
-      font-size="8"
+      font-size="10"
       fill="var(--cycle-muted)"
     >
       Administramos. Vos descansás.
@@ -92,11 +91,12 @@ const nodes = steps.map((step, i) => {
 
     {nodes.map((node) => (
       <g>
-        <circle cx={node.x} cy={node.y} r={BADGE_R} fill={node.gold ? 'var(--cycle-gold)' : 'var(--cycle-navy)'} />
+        <circle cx={node.x} cy={node.y} r={BADGE_R} fill="var(--cycle-accent)" />
         <text
           x={node.x}
-          y={node.y + 5}
+          y={node.y}
           text-anchor="middle"
+          dominant-baseline="central"
           font-family="var(--cycle-sans)"
           font-size="16"
           font-weight="700"
@@ -106,8 +106,9 @@ const nodes = steps.map((step, i) => {
         </text>
         <text
           x={node.lx}
-          y={node.ly + 4}
+          y={node.ly}
           text-anchor="middle"
+          dominant-baseline="central"
           font-family="var(--cycle-sans)"
           font-size="12"
           font-weight="600"
@@ -125,8 +126,7 @@ const nodes = steps.map((step, i) => {
   .cycle-spoke { --cycle-spoke: var(--color-neutral-100); }
   .cycle-ink { --cycle-ink: var(--color-primary-600); }
   .cycle-muted { --cycle-muted: var(--color-neutral-500); }
-  .cycle-gold { --cycle-gold: var(--color-accent-500); }
-  .cycle-navy { --cycle-navy: var(--color-primary-600); }
+  .cycle-accent { --cycle-accent: var(--color-accent-500); }
   .cycle-white { --cycle-white: #ffffff; }
   .cycle-sans { --cycle-sans: "Inter", system-ui, -apple-system, sans-serif; }
   .cycle-display { --cycle-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif; }

@@ -39,7 +39,6 @@ const jsonLd = {
 };
 
 const ctaAsesoria = whatsappLink('solicitarAsesoria');
-const ctaWhatsApp = whatsappLink('general');
 
 const sectionHeading =
   'uppercase tracking-wider underline decoration-accent-500 decoration-2 underline-offset-4';
@@ -106,9 +105,9 @@ const faqItems = [
             href={ctaAsesoria}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-primary-600 transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
           >
-            <Icon name="ph:whatsapp-logo" aria-hidden="true" />
+            <Icon name="ph:whatsapp-logo" class="text-white" aria-hidden="true" />
             Solicitar asesoría gratuita
           </a>
         </div>
@@ -234,19 +233,10 @@ const faqItems = [
             href={ctaAsesoria}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-primary-600 transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
           >
-            <Icon name="ph:calendar-check" aria-hidden="true" />
+            <Icon name="ph:calendar-check" class="text-white" aria-hidden="true" />
             Agendar asesoría gratuita
-          </a>
-          <a
-            href={ctaWhatsApp}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-md border border-white px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
-          >
-            <Icon name="ph:phone" aria-hidden="true" />
-            Escribinos por WhatsApp
           </a>
         </div>
       </div>

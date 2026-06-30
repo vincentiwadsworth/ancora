@@ -10,6 +10,8 @@ The home page converts property owners into leads by presenting the value propos
 
 The system MUST render a hero section with a Spanish H1 headline, subhead, a primary CTA button (WhatsApp with evaluate intent), a secondary CTA button (WhatsApp with general info intent), and a visual anchor element (image, illustration, CSS pattern, or abstract graphic) alongside the text content.
 
+To optimize space on mobile viewports (<768px), the H1 headline MUST scale down to `text-4xl` with `leading-tight` line height, and the 3-pillar trust strip MUST render immediately below the Hero section rather than inside it, styling the trust pillars with high-contrast text (`text-primary-600`) over a white background.
+
 (Previously: Text-only hero with headline, subhead, and two CTAs)
 
 #### Scenario: Hero renders headline and subhead in Spanish

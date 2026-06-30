@@ -19,11 +19,17 @@ const items = [
 ];
 ---
 
-<ul class="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
-  {items.map((item) => (
-    <li class="flex items-center gap-3 text-sm text-white">
-      <Icon name={`ph:${item.icon}`} class="size-7 text-accent-500" aria-hidden="true" />
-      <span>{item.label}</span>
-    </li>
-  ))}
-</ul>
+<div class="border-y border-neutral-200 bg-white py-6">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <ul class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
+      {items.map((item) => (
+        <li class="flex items-center gap-4 text-sm font-medium text-primary-600 md:justify-center md:flex-1">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-50 text-accent-600">
+            <Icon name={`ph:${item.icon}`} class="size-5" aria-hidden="true" />
+          </div>
+          <span class="leading-snug">{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

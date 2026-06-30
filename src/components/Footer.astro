@@ -48,12 +48,12 @@ const socialItems = [
         <ul class="mt-4 space-y-2 text-sm text-neutral-100">
           <li>
             {/* TODO: replace placeholder phone once client confirms */}
-            <a href={`tel:${site.phone.replace(/\s+/g, '')}`} class="hover:underline">
+            <a href={`tel:${site.phone.replace(/\s+/g, '')}`} class="hover:underline" onclick="umami.track('contact-phone')">
               {site.phone}
             </a>
           </li>
           <li>
-            <a href={`mailto:${site.email}`} class="hover:underline">
+            <a href={`mailto:${site.email}`} class="hover:underline" onclick="umami.track('contact-email')">
               {site.email}
             </a>
           </li>
@@ -85,6 +85,7 @@ const socialItems = [
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
+                onclick={`umami.track('social-${item.icon.replace('-logo', '')}')`}
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-400 text-neutral-100 transition-colors hover:bg-white hover:text-primary-600"
               >
                 <Icon name={`ph:${item.icon}`} aria-hidden="true" />

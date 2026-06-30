@@ -42,6 +42,7 @@ const headerCtaLabel = 'Solicitar asesoría';
         href={headerCtaHref}
         target="_blank"
         rel="noopener noreferrer"
+        onclick="umami.track('cta-header')"
         class="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
       >
         <Icon name="ph:whatsapp-logo" aria-hidden="true" />
@@ -78,6 +79,7 @@ const headerCtaLabel = 'Solicitar asesoría';
               href={headerCtaHref}
               target="_blank"
               rel="noopener noreferrer"
+              onclick="umami.track('cta-header-mobile')"
               class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
             >
               <Icon name="ph:whatsapp-logo" aria-hidden="true" />

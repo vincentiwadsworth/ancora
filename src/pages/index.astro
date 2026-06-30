@@ -77,7 +77,7 @@ const faqItems = [
   {/* Hero — full-width background image, text left-aligned like reference */}
   <section
     id="hero"
-    class="relative flex min-h-[640px] items-end scroll-mt-16 bg-primary-600 text-white md:items-center md:scroll-mt-20"
+    class="scroll-reveal relative flex min-h-[640px] items-end bg-primary-600 text-white md:items-center"
   >
     <div class="absolute inset-0">
       <img
@@ -94,14 +94,14 @@ const faqItems = [
 
     <div class="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-24 sm:px-6 md:py-24 lg:px-8">
       <div class="max-w-2xl">
-        <h1 class="font-display text-4xl font-bold leading-tight md:leading-tight sm:text-6xl lg:text-7xl">
+        <h1 class="stagger-1 font-display text-4xl font-bold leading-tight md:leading-tight sm:text-6xl lg:text-7xl">
           Tu propiedad genera renta.
           <span class="block text-accent-500">Vos solo cobrás.</span>
         </h1>
-        <p class="mt-6 max-w-xl text-lg text-neutral-100 sm:text-xl">
+        <p class="stagger-2 mt-6 max-w-xl text-lg text-neutral-100 sm:text-xl">
           Administramos íntegramente tu inmueble para que generes ingresos sin ocuparte del día a día.
         </p>
-        <div class="mt-8">
+        <div class="stagger-3 mt-8">
           <a
             href={ctaAsesoria}
             target="_blank"
@@ -122,6 +122,7 @@ const faqItems = [
   <Section
     id="dolores"
     background="muted"
+    containerClass="scroll-reveal"
   >
     <div class="max-w-3xl">
       <h2 class:list={['font-display text-3xl font-semibold leading-tight sm:text-4xl text-primary-600', sectionHeading]}>
@@ -143,6 +144,7 @@ const faqItems = [
     headingClass={sectionHeading}
     intro="Nos ocupamos de todo el proceso, de principio a fin."
     background="default"
+    containerClass="scroll-reveal"
   >
     <ProcessCycle />
   </Section>
@@ -151,6 +153,7 @@ const faqItems = [
   <Section
     id="servicios"
     background="muted"
+    containerClass="scroll-reveal"
   >
     <div class="max-w-3xl">
       <h2 class:list={['font-display text-3xl font-semibold leading-tight sm:text-4xl text-primary-600', sectionHeading]}>
@@ -185,6 +188,7 @@ const faqItems = [
     heading="La Diferencia entre Alquilar y Administrar"
     intro="Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual."
     background="default"
+    containerClass="scroll-reveal"
   >
     <ComparisonVisual />
   </Section>
@@ -196,6 +200,7 @@ const faqItems = [
     headingClass={sectionHeading}
     intro="Respuestas a las dudas más comunes de los propietarios."
     background="muted"
+    containerClass="scroll-reveal"
   >
     <FaqAccordion items={faqItems} />
   </Section>
@@ -203,7 +208,7 @@ const faqItems = [
   {/* CTA final */}
   <section
     id="cta-final"
-    class="relative flex min-h-[480px] items-end scroll-mt-16 bg-primary-600 text-white md:items-center md:scroll-mt-20"
+    class="scroll-reveal relative flex min-h-[480px] items-end bg-primary-600 text-white md:items-center"
   >
     <div class="absolute inset-0">
       <img

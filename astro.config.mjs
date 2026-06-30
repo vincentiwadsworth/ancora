@@ -3,8 +3,7 @@ import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://vincentiwadsworth.github.io',
-  base: '/ancora',
+  site: 'https://ancora.com.bo',
   trailingSlash: 'never',
   integrations: [
     sitemap(),

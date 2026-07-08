@@ -1,6 +1,6 @@
 # ANCORA — Sitio institucional
 
-> ANCORA es una empresa especializada en la administración integral de propiedades residenciales en Bolivia. Este repositorio contiene el sitio institucional estático (4 páginas) construido con Astro 6 + Tailwind v4, deployado a GitHub Pages con dominio propio `ancora.com.bo`.
+> ANCORA es una empresa especializada en la administración integral de propiedades residenciales en Bolivia. Este repositorio contiene el sitio institucional estático (one-pager) construido con Astro 6 + Tailwind v4, deployado a GitHub Pages con dominio propio `ancora.com.bo`.
 
 ## Stack
 
@@ -8,7 +8,7 @@
 - **Tailwind v4** — vía `@tailwindcss/vite` con tokens definidos en `@theme` (no `tailwind.config.js`)
 - **TypeScript** — modo `strict`
 - **GitHub Pages** — deploy automático vía `withastro/action@v6`
-- **Material Symbols** — iconografía (CDN Google Fonts)
+- **astro-icon** + Phosphor (`ph:`) — iconografía
 - **Umami Cloud** — analytics (opcional, env-gated)
 
 ## Vista previa
@@ -62,7 +62,7 @@ Todos los placeholders están centralizados. Antes de go-live, actualizar:
 | Dirección | `src/config/site.ts` → `site.address` (también el `bbox` por defecto en `src/components/MapEmbed.astro` si querés geolocalizar exacto) |
 | Redes sociales | `src/config/site.ts` → `site.socialHandles` |
 | Logo | `src/components/Logo.astro` (reemplazar el SVG inline) |
-| Texto del sitio (pilares, dolores, servicios, proceso, equipo, precios) | `src/data/*.ts` (7 archivos) |
+| Texto del sitio (dolores, servicios) | `src/data/*.ts` (`pains.ts`, `services.ts`) |
 | Mensajes de WhatsApp pre-llenados | `src/config/site.ts` → `ctaMessages` |
 | Texto del reporte en Home | `src/pages/index.astro` (Sección diferenciación) |
 | Site ID de Umami | Variable `PUBLIC_UMAMI_SITE_ID` en el repo |
@@ -80,11 +80,11 @@ ancora-site-build/
 │   ├── robots.txt
 │   └── favicon.svg
 ├── src/
-│   ├── components/       # 12 componentes compartidos
+│   ├── components/       # 12 componentes
 │   ├── config/           # site.ts, meta.ts
-│   ├── data/             # 7 archivos de contenido tipado
+│   ├── data/             # pains.ts, services.ts
 │   ├── layouts/          # BaseLayout.astro
-│   ├── pages/            # index, services, about, contact
+│   ├── pages/            # index.astro (única ruta)
 │   └── styles/global.css # @theme tokens + base
 └── openspec/             # specs, propuesta, diseño, tareas
 ```

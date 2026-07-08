@@ -20,10 +20,6 @@ const columns = [
     checks: [true, true, true, false, false, false, false, false, false],
   },
   {
-    label: 'Administrador',
-    checks: [true, false, true, true, true, true, false, false, true],
-  },
-  {
     label: 'ANCORA',
     checks: [true, true, true, true, true, true, true, true, true],
   },
@@ -31,12 +27,11 @@ const columns = [
 ---
 
 <div class="overflow-x-auto">
-  <table class="table-fixed w-full min-w-[600px] border-collapse text-sm">
+  <table class="table-fixed w-full min-w-[600px] border-collapse text-base">
     <colgroup>
       <col class="w-[28%]" />
-      <col class="w-[24%]" />
-      <col class="w-[24%]" />
-      <col class="w-[24%]" />
+      <col class="w-[36%]" />
+      <col class="w-[36%]" />
     </colgroup>
     <thead>
       <tr>
@@ -45,7 +40,7 @@ const columns = [
           <th
             scope="col"
             class:list={[
-              'border-b border-neutral-200 px-2 py-3 text-center text-sm font-semibold leading-snug text-primary-600',
+              'border-b border-neutral-200 px-2 py-3 text-center text-base font-semibold leading-snug text-primary-600',
               ci === columns.length - 1 && 'bg-primary-100 border-r border-primary-200 border-l-2 border-l-primary-400',
             ]}
           >
@@ -57,7 +52,7 @@ const columns = [
     <tbody class="divide-y divide-neutral-100">
       {rows.map((row, ri) => (
         <tr>
-          <th scope="row" class="py-3 pr-3 text-left font-normal text-neutral-700">{row}</th>
+          <th scope="row" class="py-3 pr-3 text-left font-normal text-neutral-700 text-base">{row}</th>
           {columns.map((col, ci) => (
             <td
               class:list={[
@@ -78,6 +73,6 @@ const columns = [
   </table>
 </div>
 
-<p class="mt-6 text-sm text-neutral-600">
+<p class="mt-6 text-base text-neutral-600">
   Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual.
 </p>

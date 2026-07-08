@@ -245,6 +245,18 @@
   }
 }
 
+/* Anchor-jumped sections should be immediately visible, not stuck at the
+   animation's opacity:0 start state. Fixes the "double-click to scroll" bug
+   caused by animation-fill-mode:both holding the pre-entry state. */
+:target.scroll-reveal,
+:target.stagger-1,
+:target.stagger-2,
+:target.stagger-3 {
+  animation: none;
+  opacity: 1;
+  translate: 0 0;
+}
+
 /* Nav link underline */
 .nav-link {
   position: relative;

@@ -17,19 +17,46 @@ const steps = [
 const CENTER = 200;
 const NODE_R = 124;
 const BADGE_R = 26;
-const LABEL_R = 168;
+const LABEL_GAP = 8;
 const SLICE = 360 / steps.length;
 
 const nodes = steps.map((step, i) => {
   const deg = -90 + i * SLICE;
   const rad = (deg * Math.PI) / 180;
+  const x = CENTER + NODE_R * Math.cos(rad);
+  const y = CENTER + NODE_R * Math.sin(rad);
+
+  // Left/right bias: labels sit horizontally NEXT to their badge
+  const onRight = x > CENTER + 0.5;
+  const onLeft = x < CENTER - 0.5;
+  const isTop = !onRight && !onLeft;
+
+  let labelAnchor: 'start' | 'middle' | 'end';
+  let lx: number;
+  let ly: number;
+
+  if (isTop) {
+    labelAnchor = 'middle';
+    lx = x;
+    ly = y - BADGE_R - LABEL_GAP;
+  } else if (onRight) {
+    labelAnchor = 'start';
+    lx = x + BADGE_R + LABEL_GAP;
+    ly = y;
+  } else {
+    labelAnchor = 'end';
+    lx = x - BADGE_R - LABEL_GAP;
+    ly = y;
+  }
+
   return {
     ...step,
     n: i + 1,
-    x: CENTER + NODE_R * Math.cos(rad),
-    y: CENTER + NODE_R * Math.sin(rad),
-    lx: CENTER + LABEL_R * Math.cos(rad),
-    ly: CENTER + LABEL_R * Math.sin(rad),
+    x,
+    y,
+    lx,
+    ly,
+    labelAnchor,
   };
 });
 ---
@@ -54,7 +81,7 @@ const nodes = steps.map((step, i) => {
     viewBox="0 0 400 400"
     role="img"
     aria-label="Ciclo de administración ANCORA: Captar y filtrar clientes, Gestión contractual, Comunicación con inquilinos, Cobranzas, Mantenimientos y reparaciones, Reportar resultados, Gestionar fin del contrato."
-    class="mx-auto w-full max-w-lg"
+    class="mx-auto w-full max-w-3xl"
     style="overflow: visible;"
   >
     <circle cx={CENTER} cy={CENTER} r={NODE_R} fill="none" stroke="var(--cycle-ring)" stroke-width="2" />
@@ -107,7 +134,7 @@ const nodes = steps.map((step, i) => {
         <text
           x={node.lx}
           y={node.ly}
-          text-anchor="middle"
+          text-anchor={node.labelAnchor}
           dominant-baseline="central"
           font-family="var(--cycle-sans)"
           font-size="12"

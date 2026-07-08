@@ -45,6 +45,7 @@ export default defineConfig({
           'money',
           'phone',
           'plus',
+          'quotes',
           'receipt',
           'list-checks',
           'clipboard-text',

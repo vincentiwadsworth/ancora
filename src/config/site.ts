@@ -1,9 +1,8 @@
 export const site = {
   brandName: 'ANCORA',
   tagline: 'Administramos. Vos descansás.',
-  // TODO: replace with real phone number once client confirms
-  phone: '+591 700 00000',
-  whatsapp: '59170000000',
+  phone: '+591 78077772',
+  whatsapp: '59178077772',
   email: 'contacto@ancora.com.bo',
   address: 'Santa Cruz de la Sierra, Bolivia',
   socialHandles: {

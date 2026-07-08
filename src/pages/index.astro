@@ -4,10 +4,10 @@ import ComparisonVisual from '../components/ComparisonVisual.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import MonthlyReport from '../components/MonthlyReport.astro';
 import PainCard from '../components/PainCard.astro';
-import PricingCard from '../components/PricingCard.astro';
 import ProcessCycle from '../components/ProcessCycle.astro';
 import Section from '../components/Section.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import Testimonials from '../components/Testimonials.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import { site, whatsappLink } from '../config/site';
 import { pains } from '../data/pains';
@@ -40,14 +40,17 @@ const jsonLd = {
 
 const ctaAsesoria = whatsappLink('solicitarAsesoria');
 
-const sectionHeading =
-  'uppercase tracking-wider underline decoration-accent-500 decoration-2 underline-offset-4';
+const sectionHeading = 'uppercase tracking-wider';
 
 // FAQ copy from Slide 4 reference. Answers are concise placeholders.
 const faqItems = [
   {
     q: '¿Qué pasa si el inquilino se atrasa?',
     a: 'Gestionamos la cobranza desde el primer día de atraso y te mantenemos informado en cada paso.',
+  },
+  {
+    q: '¿Qué servicios ofrecen?',
+    a: 'Búsqueda de inquilinos, asesoramiento legal, búsqueda y verificación, gestión de cobranza, mantenimiento, reportes mensuales, conciliaciones y gestión de contratos.',
   },
   {
     q: '¿Quién paga los mantenimientos?',
@@ -66,8 +69,8 @@ const faqItems = [
     a: 'Sí, administramos propiedades residenciales en alquiler, ya sean casas o departamentos.',
   },
   {
-    q: '¿Hay permanencia mínima?',
-    a: 'No exigimos permanencia mínima a los propietarios. El contrato se ajusta a tus necesidades.',
+    q: '¿Cuál es la tarifa?',
+    a: 'Cobramos el 7% del canon mensual. Por ejemplo, en un alquiler de Bs. 3.000, nuestro honorario es de Bs. 210 y recibís Bs. 2.790 netos.',
   },
 ];
 ---
@@ -94,7 +97,7 @@ const faqItems = [
     <div class="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-24 sm:px-6 md:py-24 lg:px-8">
       <div class="max-w-2xl">
         <h1 class="stagger-1 font-display text-4xl font-bold leading-tight md:leading-tight sm:text-6xl lg:text-7xl">
-          Tu propiedad genera renta.
+          <span class="whitespace-nowrap">Tu propiedad genera renta.</span>
           <span class="block text-accent-500">Vos solo cobrás.</span>
         </h1>
         <p class="stagger-2 mt-6 max-w-xl text-lg text-neutral-100 sm:text-xl">
@@ -175,9 +178,7 @@ const faqItems = [
       ))}
     </div>
 
-    {/* Mobile stacks these two cards under the ServiceCards grid: extra top margin separates the row */}
-    <div class="mt-20 md:mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-      <PricingCard />
+    <div class="mt-12">
       <MonthlyReport />
     </div>
   </Section>
@@ -191,6 +192,18 @@ const faqItems = [
     containerClass="scroll-reveal"
   >
     <ComparisonVisual />
+  </Section>
+
+  {/* Testimonios */}
+  <Section
+    id="testimonios"
+    heading="TESTIMONIOS"
+    headingClass={sectionHeading}
+    intro="Lo que dicen los propietarios que confían en ANCORA."
+    background="default"
+    containerClass="scroll-reveal"
+  >
+    <Testimonials />
   </Section>
 
   {/* FAQ */}

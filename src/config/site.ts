@@ -6,9 +6,9 @@ export const site = {
   email: 'contacto@ancora.com.bo',
   address: 'Santa Cruz de la Sierra, Bolivia',
   socialHandles: {
-    instagram: 'https://instagram.com/ancora.bo',
-    facebook: 'https://facebook.com/ancora.bo',
-    linkedin: 'https://linkedin.com/company/ancora-bo',
+    instagram: 'https://www.instagram.com/ancora.bo',
+    facebook: 'https://www.facebook.com/profile.php?id=61591303874176',
+    linkedin: 'https://www.linkedin.com/company/ancora-administraci%C3%B3n/',
   },
   umamiEnabled: import.meta.env.PUBLIC_UMAMI_ENABLED === 'true',
   umamiSiteId: import.meta.env.PUBLIC_UMAMI_SITE_ID || '',

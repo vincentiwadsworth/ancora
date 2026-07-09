@@ -206,13 +206,45 @@ const faqItems = [
   {/* FAQ */}
   <Section
     id="preguntas"
-    heading="PREGUNTAS FRECUENTES"
-    headingClass={sectionHeading}
-    intro="Respuestas a las dudas más comunes de los propietarios."
     background="muted"
     containerClass="scroll-reveal"
   >
-    <FaqAccordion items={faqItems} />
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-8 items-start">
+      {/* Cabecera: Izquierda arriba en desktop, arriba en mobile */}
+      <div class="lg:col-span-5">
+        <h2 class:list={['font-display text-3xl font-semibold leading-tight sm:text-4xl text-primary-600', sectionHeading]}>
+          PREGUNTAS FRECUENTES
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600">
+          Respuestas a las dudas más comunes de los propietarios.
+        </p>
+      </div>
+
+      {/* Acordeón: Derecha en desktop (ocupando dos filas), medio en mobile */}
+      <div class="lg:col-span-7 lg:row-span-2">
+        <FaqAccordion items={faqItems} />
+      </div>
+
+      {/* Tarjeta de soporte: Izquierda abajo en desktop, abajo en mobile */}
+      <div class="lg:col-span-5">
+        <div class="rounded-lg border border-neutral-200 bg-white p-6 shadow-xs">
+          <h3 class="font-semibold text-primary-600 text-lg">¿Tenés otra consulta?</h3>
+          <p class="mt-2 text-sm text-neutral-600 leading-relaxed">
+            Si tenés dudas específicas sobre tu propiedad, escribinos directamente por WhatsApp. Estamos para ayudarte.
+          </p>
+          <a
+            href={whatsappLink('general')}
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="umami.track('cta-faq-help')"
+            class="mt-4 inline-flex items-center gap-2 rounded-md bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 cursor-pointer"
+          >
+            <Icon name="ph:whatsapp-logo" class="text-white text-base" aria-hidden="true" />
+            Hablar con un asesor
+          </a>
+        </div>
+      </div>
+    </div>
   </Section>
 
   {/* CTA final */}

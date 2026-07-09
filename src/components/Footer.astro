@@ -68,7 +68,7 @@ const socialItems = [
         <ul class="mt-4 space-y-2 text-sm">
           {navItems.map((item) => (
             <li>
-              <a href={item.href} class="text-neutral-100 hover:underline">
+              <a href={item.href} onclick={`window.umami?.track('nav-${item.href.replace('#', '')}')`} class="text-neutral-100 hover:underline">
                 {item.label}
               </a>
             </li>

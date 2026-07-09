@@ -1,78 +1,212 @@
 ---
 import { Icon } from 'astro-icon/components';
-
-// 3-column comparison table matching Slide 3 reference.
-const rows = [
-  'Captación',
-  'Evaluación',
-  'Contrato',
-  'Seguimiento',
-  'Mantenim.',
-  'Cobranza',
-  'Renovación',
-  'Entrega',
-  'Cierre',
-];
-
-const columns = [
-  {
-    label: 'Inmobiliaria tradicional',
-    checks: [true, true, true, false, false, false, false, false, false],
-  },
-  {
-    label: 'ANCORA',
-    checks: [true, true, true, true, true, true, true, true, true],
-  },
-];
 ---
 
-<div class="overflow-x-auto">
-  <table class="table-fixed w-full min-w-[600px] border-collapse text-base">
-    <colgroup>
-      <col class="w-[28%]" />
-      <col class="w-[36%]" />
-      <col class="w-[36%]" />
-    </colgroup>
-    <thead>
-      <tr>
-        <th scope="col" class="border-b border-neutral-200 py-3 text-left font-normal text-neutral-500"></th>
-        {columns.map((col, ci) => (
-          <th
-            scope="col"
-            class:list={[
-              'border-b border-neutral-200 px-2 py-3 text-center text-base font-semibold leading-snug text-primary-600',
-              ci === columns.length - 1 && 'bg-primary-100 border-r border-primary-200 border-l-2 border-l-primary-400',
-            ]}
-          >
-            {col.label}
-          </th>
-        ))}
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-neutral-100">
-      {rows.map((row, ri) => (
-        <tr>
-          <th scope="row" class="py-3 pr-3 text-left font-normal text-neutral-700 text-base">{row}</th>
-          {columns.map((col, ci) => (
-            <td
-              class:list={[
-                'px-3 py-3 text-center',
-                ci === columns.length - 1 && 'bg-primary-50 border-r border-primary-200 border-l-2 border-l-primary-400',
-              ]}
-            >
-              {col.checks[ri] ? (
-                <Icon name="ph:check-circle" class="mx-auto size-5 text-accent-700" aria-label="Incluido" />
-              ) : (
-                <span class="sr-only">No incluido</span>
-              )}
-            </td>
-          ))}
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+<div class="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto items-stretch mt-8">
+  {/* Card Inmobiliaria Tradicional */}
+  <div class="flex flex-col justify-between rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-xs transition duration-300 hover:shadow-md">
+    <div>
+      <span class="text-xs font-semibold uppercase tracking-wider text-neutral-400">Modelo Convencional</span>
+      <h3 class="font-display text-2xl font-semibold text-neutral-800 mt-1">Inmobiliaria Tradicional</h3>
+      <p class="mt-2 text-sm text-neutral-500">Su gestión se limita a la búsqueda inicial y firma del contrato. Luego, el propietario queda solo.</p>
+      
+      <div class="mt-8 border-t border-neutral-100 pt-6">
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-neutral-100 p-0.5">
+              <Icon name="ph:check" class="size-3 text-neutral-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-700">Captación</p>
+              <p class="text-xs text-neutral-500">Promoción y marketing del inmueble.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-neutral-100 p-0.5">
+              <Icon name="ph:check" class="size-3 text-neutral-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-700">Evaluación</p>
+              <p class="text-xs text-neutral-500">Filtro de interesados e ingresos.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 pb-4 border-b border-neutral-100">
+            <div class="mt-0.5 rounded-full bg-neutral-100 p-0.5">
+              <Icon name="ph:check" class="size-3 text-neutral-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-700">Contrato</p>
+              <p class="text-xs text-neutral-500">Redacción y firma del documento.</p>
+            </div>
+          </li>
+          
+          {/* Fases no cubiertas */}
+          <li class="flex items-start gap-3 opacity-40">
+            <div class="mt-0.5 rounded-full bg-red-50 p-0.5">
+              <Icon name="ph:x" class="size-3 text-red-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-500 line-through">Seguimiento</p>
+              <p class="text-xs text-neutral-400">Verificaciones durante el alquiler.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 opacity-40">
+            <div class="mt-0.5 rounded-full bg-red-50 p-0.5">
+              <Icon name="ph:x" class="size-3 text-red-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-500 line-through">Mantenimiento</p>
+              <p class="text-xs text-neutral-400">Coordinación de arreglos.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 opacity-40">
+            <div class="mt-0.5 rounded-full bg-red-50 p-0.5">
+              <Icon name="ph:x" class="size-3 text-red-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-500 line-through">Cobranza</p>
+              <p class="text-xs text-neutral-400">Control de pagos mes a mes.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 opacity-40">
+            <div class="mt-0.5 rounded-full bg-red-50 p-0.5">
+              <Icon name="ph:x" class="size-3 text-red-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-500 line-through">Renovación</p>
+              <p class="text-xs text-neutral-400">Negociación de incrementos anuales.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 opacity-40">
+            <div class="mt-0.5 rounded-full bg-red-50 p-0.5">
+              <Icon name="ph:x" class="size-3 text-red-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-500 line-through">Entrega</p>
+              <p class="text-xs text-neutral-400">Recepción e inventario de salida.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 opacity-40">
+            <div class="mt-0.5 rounded-full bg-red-50 p-0.5">
+              <Icon name="ph:x" class="size-3 text-red-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-500 line-through">Cierre</p>
+              <p class="text-xs text-neutral-400">Liquidación de garantías.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="mt-8 pt-4 border-t border-neutral-100 text-center">
+      <span class="inline-flex rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-600">Fin del servicio en la firma</span>
+    </div>
+  </div>
 
-<p class="mt-6 text-base text-neutral-600">
-  Muchas inmobiliarias terminan su trabajo cuando se firma el contrato. ANCORA continúa administrando durante toda la relación contractual.
-</p>
+  {/* Card ANCORA */}
+  <div class="flex flex-col justify-between rounded-2xl border-2 border-accent-500 bg-primary-600 p-6 sm:p-8 shadow-sm relative overflow-hidden transition duration-300 hover:shadow-md hover:-translate-y-1">
+    {/* Ribbon de Destacado */}
+    <div class="absolute -right-12 -top-12 size-32 bg-accent-500 rotate-45 flex items-end justify-center pb-3">
+      <Icon name="ph:crown" class="size-5 text-white -rotate-45 mb-1" />
+    </div>
+
+    <div>
+      <span class="text-xs font-semibold uppercase tracking-wider text-accent-400">Administración Integral</span>
+      <h3 class="font-display text-2xl font-semibold text-white mt-1">ANCORA</h3>
+      <p class="mt-2 text-sm text-neutral-300">Te acompañamos mes a mes, protegiendo tu patrimonio durante toda la vida del contrato.</p>
+      
+      <div class="mt-8 border-t border-primary-500/50 pt-6">
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Captación</p>
+              <p class="text-xs text-neutral-300">Publicación y marketing premium.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Evaluación</p>
+              <p class="text-xs text-neutral-300">Filtro e investigación de interesados.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 pb-4 border-b border-primary-500/50">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Contrato</p>
+              <p class="text-xs text-neutral-300">Redacción y firma legal garantizada.</p>
+            </div>
+          </li>
+          
+          {/* Fases Exclusivas */}
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Seguimiento</p>
+              <p class="text-xs text-neutral-300">Monitoreo periódico del inmueble.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Mantenimiento</p>
+              <p class="text-xs text-neutral-300">Coordinación de refacciones sin estrés.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Cobranza</p>
+              <p class="text-xs text-neutral-300">Gestión de cobro y transferencias.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Renovación</p>
+              <p class="text-xs text-neutral-300">Actualización del canon e incrementos.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Entrega</p>
+              <p class="text-xs text-neutral-300">Inspección minuciosa de salida.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 rounded-full bg-accent-500/20 p-0.5">
+              <Icon name="ph:check" class="size-3 text-accent-500" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Cierre</p>
+              <p class="text-xs text-neutral-300">Devolución y liquidación de garantías.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="mt-8 pt-4 border-t border-primary-500/50 text-center">
+      <span class="inline-flex rounded-full bg-accent-500/20 px-3 py-1 text-xs font-semibold text-accent-300">Soporte y gestión activa 24/7</span>
+    </div>
+  </div>
+</div>

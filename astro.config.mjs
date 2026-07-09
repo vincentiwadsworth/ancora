@@ -26,6 +26,7 @@ export default defineConfig({
           'check',
           'check-circle',
           'clock',
+          'crown',
           'door-open',
           'envelope-simple',
           'facebook-logo',

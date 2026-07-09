@@ -14,7 +14,8 @@ const steps = [
   { label: 'Gestionar fin del contrato' },
 ];
 
-const CENTER = 200;
+const CENTER_X = 350;
+const CENTER_Y = 200;
 const NODE_R = 124;
 const BADGE_R = 26;
 const LABEL_GAP = 8;
@@ -23,12 +24,12 @@ const SLICE = 360 / steps.length;
 const nodes = steps.map((step, i) => {
   const deg = -90 + i * SLICE;
   const rad = (deg * Math.PI) / 180;
-  const x = CENTER + NODE_R * Math.cos(rad);
-  const y = CENTER + NODE_R * Math.sin(rad);
+  const x = CENTER_X + NODE_R * Math.cos(rad);
+  const y = CENTER_Y + NODE_R * Math.sin(rad);
 
   // Left/right bias: labels sit horizontally NEXT to their badge
-  const onRight = x > CENTER + 0.5;
-  const onLeft = x < CENTER - 0.5;
+  const onRight = x > CENTER_X + 0.5;
+  const onLeft = x < CENTER_X - 0.5;
   const isTop = !onRight && !onLeft;
 
   let labelAnchor: 'start' | 'middle' | 'end';
@@ -78,22 +79,22 @@ const nodes = steps.map((step, i) => {
 {/* Desktop circular SVG — colors via CSS variables, not hardcoded hex */}
 <div class="hidden px-4 md:block cycle-ring cycle-spoke cycle-ink cycle-muted cycle-accent cycle-white cycle-sans cycle-display">
   <svg
-    viewBox="0 0 400 400"
+    viewBox="0 0 700 400"
     role="img"
     aria-label="Ciclo de administración ANCORA: Captar y filtrar clientes, Gestión contractual, Comunicación con inquilinos, Cobranzas, Mantenimientos y reparaciones, Reportar resultados, Gestionar fin del contrato."
     class="mx-auto w-full max-w-3xl"
     style="overflow: visible;"
   >
-    <circle cx={CENTER} cy={CENTER} r={NODE_R} fill="none" stroke="var(--cycle-ring)" stroke-width="2" />
+    <circle cx={CENTER_X} cy={CENTER_Y} r={NODE_R} fill="none" stroke="var(--cycle-ring)" stroke-width="2" />
 
     {nodes.map((node) => (
-      <line x1={CENTER} y1={CENTER} x2={node.x} y2={node.y} stroke="var(--cycle-spoke)" stroke-width="2" />
+      <line x1={CENTER_X} y1={CENTER_Y} x2={node.x} y2={node.y} stroke="var(--cycle-spoke)" stroke-width="2" />
     ))}
 
-    <circle cx={CENTER} cy={CENTER} r="60" fill="var(--cycle-white)" stroke="var(--cycle-ink)" stroke-width="2" />
+    <circle cx={CENTER_X} cy={CENTER_Y} r="60" fill="var(--cycle-white)" stroke="var(--cycle-ink)" stroke-width="2" />
     <text
-      x={CENTER}
-      y={CENTER - 6}
+      x={CENTER_X}
+      y={CENTER_Y - 6}
       text-anchor="middle"
       dominant-baseline="central"
       font-family="var(--cycle-display)"

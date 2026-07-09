@@ -1,5 +1,5 @@
 ---
-interface Props {
+export interface Props {
   id?: string;
   heading?: string;
   headingClass?: string;
@@ -27,13 +27,13 @@ const bgClasses = {
   default: 'bg-surface',
   muted: 'bg-surface-muted',
   inverse: 'bg-primary-600 text-white',
-}[background];
+}[background as 'default' | 'muted' | 'inverse'];
 
 const paddingClasses = {
   compact: 'py-[var(--spacing-section-y-sm)]',
   default: 'py-[var(--spacing-section-y)]',
   spacious: 'py-[var(--spacing-section-y-lg)]',
-}[padding];
+}[padding as 'compact' | 'default' | 'spacious'];
 ---
 
 <Tag

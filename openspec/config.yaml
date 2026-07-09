@@ -29,12 +29,38 @@ rules:
     - Keep tasks completable in one session
   apply:
     - Follow existing code patterns
-    tdd: true
-    test_command: "npm run test"
-    note: "Tests are E2E-only via Playwright. Run `npm run preview -- --port 4321` in parallel before `npm run test`. TDD cycle means: run tests, implement, run tests again."
+    tdd: false
+    test_command: ""
+    note: "No automated test suite exists. Verification is done visually in the browser, plus linting and type checking."
   verify:
-    test_command: "npm run test"
+    test_command: ""
     build_command: "npm run build"
     coverage_threshold: 0
   archive:
     - Warn before merging destructive deltas
+
+testing:
+  strict_tdd: false
+  framework: null
+  test_command: ""
+  coverage_command: ""
+  layers:
+    unit:
+      available: false
+      tool: null
+    integration:
+      available: false
+      tool: null
+    e2e:
+      available: false
+      tool: null
+  quality:
+    linter:
+      available: true
+      command: "npm run lint"
+    type_checker:
+      available: true
+      command: "npx astro check"
+    formatter:
+      available: true
+      command: "npm run format"

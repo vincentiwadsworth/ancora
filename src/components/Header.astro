@@ -42,7 +42,7 @@ const headerCtaLabel = 'Solicitar asesoría';
         href={headerCtaHref}
         target="_blank"
         rel="noopener noreferrer"
-        onclick="umami.track('cta-header')"
+        onclick="window.umami?.track('cta-header')"
         class="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
       >
         <Icon name="ph:whatsapp-logo" aria-hidden="true" />
@@ -55,9 +55,7 @@ const headerCtaLabel = 'Solicitar asesoría';
         class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border border-neutral-200 text-primary-600"
         aria-label="Abrir menú"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
+        <Icon name="ph:list" class="h-6 w-6" aria-hidden="true" />
       </summary>
       <nav
         aria-label="Móvil"
@@ -79,7 +77,7 @@ const headerCtaLabel = 'Solicitar asesoría';
               href={headerCtaHref}
               target="_blank"
               rel="noopener noreferrer"
-              onclick="umami.track('cta-header-mobile')"
+              onclick="window.umami?.track('cta-header-mobile')"
               class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
             >
               <Icon name="ph:whatsapp-logo" aria-hidden="true" />
@@ -91,3 +89,15 @@ const headerCtaLabel = 'Solicitar asesoría';
     </details>
   </div>
 </header>
+
+<script>
+  const details = document.querySelector('header details') as HTMLDetailsElement | null;
+  if (details) {
+    const links = details.querySelectorAll('nav a');
+    for (const link of links) {
+      link.addEventListener('click', () => {
+        details.removeAttribute('open');
+      });
+    }
+  }
+</script>

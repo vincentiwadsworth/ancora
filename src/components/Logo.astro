@@ -21,7 +21,7 @@ const {
     class={`logo-cross logo-font ${className ?? ''}`}
     fill="none"
   >
-    <rect width="64" height="64" rx="8" fill="currentColor" />
+    <rect width="64" height="64" rx="8" fill="var(--logo-bg, currentColor)" />
     <path d="M16 16 L48 48 M48 16 L16 48" stroke="var(--logo-cross)" stroke-width="4" stroke-linecap="round" />
   </svg>
 ) : (
@@ -33,7 +33,7 @@ const {
     class={`logo-cross logo-font ${className ?? ''}`}
     fill="none"
   >
-    <rect x="0" y="0" width="48" height="48" rx="6" fill="currentColor" />
+    <rect x="0" y="0" width="48" height="48" rx="6" fill="var(--logo-bg, currentColor)" />
     <path d="M12 12 L36 36 M36 12 L12 36" stroke="var(--logo-cross)" stroke-width="3" stroke-linecap="round" />
     <text
       x="60"
@@ -50,6 +50,9 @@ const {
 )}
 
 <style>
-  .logo-cross { --logo-cross: #f5f4f2; }
+  .logo-cross {
+    --logo-cross: #f5f4f2;
+    --logo-bg: #0e1b24;
+  }
   .logo-font { --logo-font: "Inter", system-ui, -apple-system, sans-serif; }
 </style>

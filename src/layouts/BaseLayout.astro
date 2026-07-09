@@ -31,14 +31,20 @@ const meta = getPageMeta(page);
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_BO" />
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.ogTitle} />
+    <meta name="twitter:description" content={meta.ogDescription} />
+    <meta name="twitter:image" content={meta.ogImage} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     {jsonLd && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
 
     {site.umamiEnabled && site.umamiSiteId && (
       <script
+        is:inline
         defer
         data-website-id={site.umamiSiteId}
         src="https://estadisticas.srv1406344.hstgr.cloud/script.js"

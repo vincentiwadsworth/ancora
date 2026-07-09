@@ -88,6 +88,7 @@ const faqItems = [
         class="hero-focus-img h-full w-full object-cover"
         width="1440"
         height="800"
+        fetchpriority="high"
       />
       <div class="overlay-gradient"></div>
       {/* Mobile-only scrim: hero plant leaves blow out the white text below md */}
@@ -108,7 +109,7 @@ const faqItems = [
             href={ctaAsesoria}
             target="_blank"
             rel="noopener noreferrer"
-            onclick="umami.track('cta-hero')"
+            onclick="window.umami?.track('cta-hero')"
             class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
           >
             <Icon name="ph:whatsapp-logo" class="text-white" aria-hidden="true" />
@@ -143,7 +144,7 @@ const faqItems = [
   {/* Cómo funciona */}
   <Section
     id="como-funciona"
-    heading="COMO FUNCIONA?"
+    heading="¿Cómo funciona?"
     headingClass={sectionHeading}
     intro="Nos ocupamos de todo el proceso, de principio a fin."
     background="default"
@@ -236,7 +237,7 @@ const faqItems = [
             href={whatsappLink('general')}
             target="_blank"
             rel="noopener noreferrer"
-            onclick="umami.track('cta-faq-help')"
+            onclick="window.umami?.track('cta-faq-help')"
             class="mt-4 inline-flex items-center gap-2 rounded-md bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 cursor-pointer"
           >
             <Icon name="ph:whatsapp-logo" class="text-white text-base" aria-hidden="true" />
@@ -259,6 +260,7 @@ const faqItems = [
         class="h-full w-full object-cover"
         width="1440"
         height="800"
+        loading="lazy"
       />
       <div class="overlay-gradient"></div>
     </div>
@@ -276,7 +278,7 @@ const faqItems = [
             href={ctaAsesoria}
             target="_blank"
             rel="noopener noreferrer"
-            onclick="umami.track('cta-final')"
+            onclick="window.umami?.track('cta-final')"
             class="inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
           >
             <Icon name="ph:calendar-check" class="text-white" aria-hidden="true" />

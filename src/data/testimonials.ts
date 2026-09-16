@@ -1,7 +1,7 @@
 export interface Testimonial {
   quote: string;
   name: string;
-  role: string; // relationship to ANCORA, e.g. "Propietaria en Santa Cruz"
+  role: string; // relationship to ÁNCORA, e.g. "Propietaria en Santa Cruz"
 }
 
 // CONTENT LOADED: textos reales de clientes. Los roles son placeholder —

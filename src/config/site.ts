@@ -1,5 +1,5 @@
 export const site = {
-  brandName: 'ANCORA',
+  brandName: 'ÁNCORA',
   tagline: 'Administramos. Vos descansás.',
   phone: '+591 78077772',
   whatsapp: '59178077772',

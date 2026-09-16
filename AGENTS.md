@@ -9,7 +9,7 @@ One-pager institucional de ANCORA, empresa boliviana de administración integral
 - Estilos: Tailwind v4 con `@theme` tokens en `src/styles/global.css` (sin `tailwind.config.js`)
 - Linter / formateador: Biome 1.9 (single quotes, 2 espacios)
 - Iconos: astro-icon con Phosphor (`ph:`) como único set
-- Tipografías: Inter (body) + Cormorant Garamond (display), self-hosted en `public/fonts/`
+- Tipografías: Montserrat (body) + MAINLUX (display), self-hosted en `public/fonts/`
 - Analytics: Umami self-hosted en VPS de Hostinger (env-gated por `PUBLIC_UMAMI_ENABLED`)
 - Deploy: GitHub Pages vía `withastro/action`
 
@@ -34,11 +34,12 @@ ancora-site-build/
 ├── public/
 │   ├── CNAME                 # ancora.com.bo
 │   ├── robots.txt
-│   ├── favicon.svg           # placeholder (X invertida sobre #0e1b24)
-│   ├── fonts/                # Inter + Cormorant Garamond (.woff2, latin)
+│   ├── favicon.svg           # isologo Áncora (teal sobre #033744)
+│   ├── fonts/                # Montserrat + MAINLUX (.woff2, latin)
+│   ├── og/                   # home.png (Open Graph)
 │   └── images/               # hero-bg.webp, cta-building.webp, report-interior.svg
 └── src/
-    ├── components/           # 12 componentes
+    ├── components/           # 13 componentes
     │   ├── Header.astro
     │   ├── Footer.astro
     │   ├── Logo.astro
@@ -80,6 +81,7 @@ ancora-site-build/
 
 - No instalar dependencias npm sin avisar antes.
 - No tocar `ancora/` (en el repo padre `webs_curros`) — es material del cliente, solo lectura.
+- No commitear `branding/` — material del cliente e incluye un PDF con credenciales.
 - No subir archivos `.env*` al repositorio.
 - No usar `any` en TypeScript sin justificarlo con un comentario.
 - No crear páginas fuera del alcance acordado con el cliente sin consultar primero.

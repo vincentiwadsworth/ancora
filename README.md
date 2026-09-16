@@ -61,7 +61,6 @@ Todos los placeholders están centralizados. Antes de go-live, actualizar:
 | Email | `src/config/site.ts` → `site.email` |
 | Dirección | `src/config/site.ts` → `site.address` (también el `bbox` por defecto en `src/components/MapEmbed.astro` si querés geolocalizar exacto) |
 | Redes sociales | `src/config/site.ts` → `site.socialHandles` |
-| Logo | `src/components/Logo.astro` (reemplazar el SVG inline) |
 | Texto del sitio (dolores, servicios) | `src/data/*.ts` (`pains.ts`, `services.ts`) |
 | Mensajes de WhatsApp pre-llenados | `src/config/site.ts` → `ctaMessages` |
 | Texto del reporte en Home | `src/pages/index.astro` (Sección diferenciación) |
@@ -78,9 +77,11 @@ ancora-site-build/
 ├── public/
 │   ├── CNAME             # ancora.com.bo
 │   ├── robots.txt
-│   └── favicon.svg
+│   ├── favicon.svg
+│   ├── fonts/            # Montserrat + MAINLUX (.woff2)
+│   └── og/home.png       # Open Graph
 ├── src/
-│   ├── components/       # 12 componentes
+│   ├── components/       # 13 componentes
 │   ├── config/           # site.ts, meta.ts
 │   ├── data/             # pains.ts, services.ts
 │   ├── layouts/          # BaseLayout.astro

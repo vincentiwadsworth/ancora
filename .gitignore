@@ -13,3 +13,6 @@ test-results/
 .idea/
 # Local AI runtime state
 .atl/
+
+# Material de marca del cliente (no commitear)
+branding/

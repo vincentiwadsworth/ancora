@@ -81,7 +81,7 @@ const nodes = steps.map((step, i) => {
   <svg
     viewBox="0 0 700 400"
     role="img"
-    aria-label="Ciclo de administración ANCORA: Captar y filtrar clientes, Gestión contractual, Comunicación con inquilinos, Cobranzas, Mantenimientos y reparaciones, Reportar resultados, Gestionar fin del contrato."
+    aria-label="Ciclo de administración ÁNCORA: Captar y filtrar clientes, Gestión contractual, Comunicación con inquilinos, Cobranzas, Mantenimientos y reparaciones, Reportar resultados, Gestionar fin del contrato."
     class="mx-auto w-full max-w-3xl"
     style="overflow: visible;"
   >
@@ -103,7 +103,7 @@ const nodes = steps.map((step, i) => {
       letter-spacing="0.06em"
       fill="var(--cycle-ink)"
     >
-      ANCORA
+      ÁNCORA
     </text>
 
     {nodes.map((node) => (
@@ -145,6 +145,6 @@ const nodes = steps.map((step, i) => {
   .cycle-muted { --cycle-muted: var(--color-neutral-500); }
   .cycle-accent { --cycle-accent: var(--color-accent-500); }
   .cycle-white { --cycle-white: #ffffff; }
-  .cycle-sans { --cycle-sans: "Inter", system-ui, -apple-system, sans-serif; }
-  .cycle-display { --cycle-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif; }
+  .cycle-sans { --cycle-sans: var(--font-sans); }
+  .cycle-display { --cycle-display: var(--font-display); }
 </style>

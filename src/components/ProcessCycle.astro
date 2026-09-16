@@ -67,7 +67,7 @@ const nodes = steps.map((step, i) => {
   {nodes.map((node) => (
     <li class="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-3">
       <span
-        class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent-500 text-sm font-semibold text-white"
+        class="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent-500 text-sm font-semibold text-primary-600"
       >
         {node.n}
       </span>
@@ -77,7 +77,7 @@ const nodes = steps.map((step, i) => {
 </ol>
 
 {/* Desktop circular SVG — colors via CSS variables, not hardcoded hex */}
-<div class="hidden px-4 md:block cycle-ring cycle-spoke cycle-ink cycle-muted cycle-accent cycle-white cycle-sans cycle-display">
+<div class="hidden px-4 md:block cycle-ring cycle-spoke cycle-ink cycle-muted cycle-accent cycle-badge cycle-white cycle-sans cycle-display">
   <svg
     viewBox="0 0 700 400"
     role="img"
@@ -117,7 +117,7 @@ const nodes = steps.map((step, i) => {
           font-family="var(--cycle-sans)"
           font-size="16"
           font-weight="700"
-          fill="var(--cycle-white)"
+          fill="var(--cycle-badge)"
         >
           {node.n}
         </text>
@@ -144,6 +144,7 @@ const nodes = steps.map((step, i) => {
   .cycle-ink { --cycle-ink: var(--color-primary-600); }
   .cycle-muted { --cycle-muted: var(--color-neutral-500); }
   .cycle-accent { --cycle-accent: var(--color-accent-500); }
+  .cycle-badge { --cycle-badge: var(--color-primary-600); }
   .cycle-white { --cycle-white: #ffffff; }
   .cycle-sans { --cycle-sans: var(--font-sans); }
   .cycle-display { --cycle-display: var(--font-display); }

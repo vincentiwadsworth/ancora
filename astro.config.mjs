@@ -53,6 +53,7 @@ export default defineConfig({
           'scales',
           'scroll',
           'shield-check',
+          'tiktok-logo',
           'user-check',
           'whatsapp-logo',
           'wrench',

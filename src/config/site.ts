@@ -1,8 +1,8 @@
 export const site = {
   brandName: 'ÁNCORA',
   tagline: 'Administramos. Vos descansás.',
-  phone: '+591 78077772',
-  whatsapp: '59178077772',
+  phone: '+591 76687779',
+  whatsapp: '59176687779',
   email: 'contacto@ancora.com.bo',
   address: 'Santa Cruz de la Sierra, Bolivia',
   socialHandles: {

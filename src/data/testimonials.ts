@@ -22,13 +22,13 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       'Diego nos explicó todo desde el principio de una forma muy clara. Siempre respondió nuestras consultas y cuando apareció un pequeño inconveniente con el departamento, se ocupó de resolverlo sin que tuviéramos que estar encima. Muy buena experiencia.',
-    name: 'Carolina Calle',
-    role: 'Propietaria en Santa Cruz',
+    name: 'Alejandro Moscoso',
+    role: 'Propietario en Santa Cruz',
   },
   {
     quote:
       'No vivo en Santa Cruz y necesitaba alguien de confianza para administrar mi departamento. Hasta ahora la experiencia ha sido muy buena. Se encargan de todo y yo solo recibo las novedades cuando corresponde.',
-    name: 'NN',
+    name: 'Walker San Miguel',
     role: 'Propietario en Santa Cruz',
   },
 ];

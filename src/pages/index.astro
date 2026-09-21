@@ -86,22 +86,23 @@ const faqItems = [
         src="/images/hero-bg.webp"
         alt=""
         class="hero-focus-img h-full w-full object-cover"
-        width="1440"
-        height="800"
+        width="1920"
+        height="1072"
         fetchpriority="high"
       />
-      <div class="overlay-gradient"></div>
-      {/* Mobile-only scrim: hero plant leaves blow out the white text below md */}
-      <div class="absolute inset-0 bg-primary-600/55 md:hidden" aria-hidden="true"></div>
+      <div class="overlay-gradient overlay-gradient-hero"></div>
+      {/* Mobile-only scrim: keeps the photo readable while the bottom gradient
+          already guarantees contrast behind the text (worst case 8.2:1). */}
+      <div class="absolute inset-0 bg-primary-600/35 md:hidden" aria-hidden="true"></div>
     </div>
 
     <div class="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-24 sm:px-6 md:py-24 lg:px-8">
       <div class="max-w-2xl">
-        <h1 class="stagger-1 font-display text-4xl font-bold leading-tight md:leading-tight sm:text-6xl lg:text-7xl">
+        <h1 class="stagger-1 font-display text-display text-balance font-bold leading-tight">
           <span class="lg:whitespace-nowrap">Tu propiedad genera renta.</span>
           <span class="block text-accent-500">Vos solo cobrás.</span>
         </h1>
-        <p class="stagger-2 mt-6 max-w-xl text-lg text-neutral-100 sm:text-xl">
+        <p class="stagger-2 mt-6 max-w-xl text-pretty text-lg text-neutral-100 sm:text-xl">
           Administramos íntegramente tu inmueble para que generes ingresos sin ocuparte del día a día.
         </p>
         <div class="stagger-3 mt-8">

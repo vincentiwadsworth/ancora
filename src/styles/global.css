@@ -144,6 +144,9 @@
   /* Typography */
   --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
   --font-display: "MAINLUX", "Montserrat", system-ui, sans-serif;
+  /* Fluid hero headline: 36px @375 → 72px @1920. rem bounds keep browser zoom
+     and user font-size preferences working (WCAG 1.4.4). */
+  --text-display: clamp(2.25rem, 1.7rem + 2.33vw, 4.5rem);
 
   /* Spacing */
   --spacing-section-y: 5rem;
@@ -194,17 +197,38 @@
     background: linear-gradient(
         to top,
         var(--color-primary-600) 0%,
-        var(--color-primary-600) 40%,
-        color-mix(in srgb, var(--color-primary-600) 70%, transparent) 60%,
+        var(--color-primary-600) 30%,
+        color-mix(in srgb, var(--color-primary-600) 82%, transparent) 48%,
+        color-mix(in srgb, var(--color-primary-600) 55%, transparent) 66%,
         transparent 100%
       ), color-mix(in srgb, var(--color-primary-600) 35%, transparent);
   }
 }
 
-/* Mobile: anchor the crop to a sensible focal point instead of center random. */
+/* Mobile: pan the crop right so the person on the sofa stays in frame instead
+   of the shelf/plants only (image is 1920x1072; at 390px the visible window was
+   natural x 633-1286, which cut the subject out). */
 @media (max-width: 767px) {
   .hero-focus-img {
-    object-position: center 30%;
+    object-position: 85% center;
+  }
+}
+
+/* Hero only: widen the opaque zone so headline, paragraph and CTA sit on a
+   controlled background (worst-case contrast behind the text), while the
+   photo keeps its subject clear on the right. CTA section keeps the base stops. */
+@media (min-width: 768px) {
+  .overlay-gradient-hero {
+    background: linear-gradient(
+      to right,
+      var(--color-primary-600) 0%,
+      var(--color-primary-600) 30%,
+      color-mix(in srgb, var(--color-primary-600) 94%, transparent) 40%,
+      color-mix(in srgb, var(--color-primary-600) 76%, transparent) 52%,
+      color-mix(in srgb, var(--color-primary-600) 50%, transparent) 64%,
+      color-mix(in srgb, var(--color-primary-600) 22%, transparent) 78%,
+      transparent 94%
+    );
   }
 }
 

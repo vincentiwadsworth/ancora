@@ -8,6 +8,9 @@ export interface PageMeta {
   ogTitle: string;
   ogDescription: string;
   ogImage: string;
+  ogImageWidth: number;
+  ogImageHeight: number;
+  ogImageAlt: string;
   canonical: string;
 }
 
@@ -22,6 +25,10 @@ const meta: Record<PageKey, PageMeta> = {
     ogDescription:
       'Administración profesional de activos residenciales en alquiler en Bolivia.',
     ogImage: `${base}/og/home.png`,
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    ogImageAlt:
+      'Logotipo de ÁNCORA sobre fondo verde petróleo oscuro, con la Á en turquesa, y debajo la frase "Administramos. Vos descansás."',
     canonical: `${base}/`,
   },
 };
